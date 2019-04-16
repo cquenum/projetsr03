@@ -38,6 +38,8 @@ public class UtilisateurServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
+        UtilisateurDao dao = new UtilisateurDao();
+        utilisateursTable = dao.find();
 
         if ("POST".equals(request.getMethod())) {
 
@@ -66,7 +68,6 @@ public class UtilisateurServlet extends HttpServlet {
                 newUtilisateur.setStatut(false);
             }
             
-            UtilisateurDao dao = new UtilisateurDao();
             utilisateursTable.put(utilisateursTable.size(), dao.create(newUtilisateur));
             response.sendRedirect(request.getContextPath() + "/succes.html");
 
