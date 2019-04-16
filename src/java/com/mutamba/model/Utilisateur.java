@@ -95,7 +95,7 @@ public class Utilisateur {
     }
     
     public void setRole(String role){
-        this.telephone = role;
+        this.role = role;
     }
     
     public void setId(int id){

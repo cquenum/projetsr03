@@ -38,103 +38,37 @@ public class UtilisateurServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
+        
         UtilisateurDao dao = new UtilisateurDao();
+        
         utilisateursTable = dao.find();
+        
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String email = request.getParameter("email");
+        String pwd = request.getParameter("pwd");
+        String telephone = request.getParameter("telephone");
+        String role = request.getParameter("role");
+        String[] statut = request.getParameterValues("statut");
 
-        if ("POST".equals(request.getMethod())) {
+        Utilisateur newUtilisateur = new Utilisateur(nom, prenom,
+                email, pwd, role);
 
-            String nom = request.getParameter("nom");
-            String prenom = request.getParameter("prenom");
-            String email = request.getParameter("email");
-            String pwd = request.getParameter("pwd");
-            String telephone = request.getParameter("telephone");
-            String role = request.getParameter("role");
-            String[] statut = request.getParameterValues("statut");
-            
-            
+        //newUtilisateur.setId(utilisateursTable.size() + 1);
+        newUtilisateur.setTelephone(telephone);
 
-            Utilisateur newUtilisateur = new Utilisateur(nom, prenom,
-                    email, pwd, role);
+        LocalDateTime dateCreation = LocalDateTime.now();
+        newUtilisateur.setDateCreation(dateCreation);
 
-            //newUtilisateur.setId(utilisateursTable.size() + 1);
-
-            newUtilisateur.setTelephone(telephone);
-            
-            LocalDateTime dateCreation = LocalDateTime.now();
-            newUtilisateur.setDateCreation(dateCreation);
-            
-            newUtilisateur.setStatut(true);
-            if (statut.length == 0) {
-                newUtilisateur.setStatut(false);
-            }
-            
-            utilisateursTable.put(utilisateursTable.size(), dao.create(newUtilisateur));
-            response.sendRedirect(request.getContextPath() + "/succes.html");
-
-        } else if ("GET".equals(request.getMethod())) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Liste des Utilisateurs</title>");
-                out.println("<link rel=\"StyleSheet\" href=\"" + request.getContextPath() + "/css/style.css\" type=\"text/css\">");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<div>");
-                out.println("<div>");
-                out.println("<ul>");
-                out.println("<li><a class=\"active\" href=\"/Projet_SR03/index.html\">Accueil</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/ajout_utilisateur.html\">Ajouter un Utilisateur</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/ajout_competence.html\">Ajouter une Compétence</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/ajout_question.html\">Ajouter une Question</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/ajout_reponse.html\">Ajouter une Réponse</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/utilisateurs\">Liste des Utilisateurs</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/competences\">Liste des Compétences</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/questionnaires\">Liste des Questionnaires</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/questions\">Liste des Questions</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/reponses\">Liste des Réponses</a></li>");
-                out.println("<li><a href=\"/Projet_SR03/parcours\">Liste des Parcours</a></li>");
-                out.println("</ul>");
-                out.println("</div>");
-                out.println("<div class=\"container\" style=\"margin-left:25%;padding:1px 16px;height:1000px;\">");
-                out.println("<h2>Liste des Utilisateurs: </h2>");
-                out.println("<table>");
-                out.println("<tr>");
-                out.println("<th>Prénom</th>");
-                out.println("<th>Nom</th>");
-                out.println("<th>Email</th>");
-                out.println("<th>Téléphone</th>");
-                out.println("<th>Rôle</th>");
-                out.println("<th>Date création</th>");
-                out.println("<th>Statut</th>");
-                out.println("<th></th>");
-                out.println("<th></th>");
-                out.println("</tr>");
-                for (int i = 0; i < utilisateursTable.size(); i++) {
-                    out.println("<tr>");
-                    out.println("<td>" + utilisateursTable.get(i).getPrenom() + "</td>");
-                    out.println("<td>" + utilisateursTable.get(i).getNom() + "</td>");
-                    out.println("<td>" + utilisateursTable.get(i).getEmail() + "</td>");
-                    out.println("<td>" + utilisateursTable.get(i).getTelephone() + "</td>");
-                    out.println("<td>" + utilisateursTable.get(i).getRole() + "</td>");
-                    out.println("<td>" + utilisateursTable.get(i).getDateCreation().format(formatter) + "</td>");
-                    if (utilisateursTable.get(i).getStatut()) {
-                        out.println("<td>Actif</td>");
-                    } else {
-                        out.println("<td>Inactif</td>");
-                    }
-                    out.println("<td><a href=\"" + request.getContextPath() + "/suppr_utilisateur?id=" + utilisateursTable.get(i).getId() + "\">Supprimer</a></td>");
-                    out.println("<td><a href=\"" + request.getContextPath() + "/modif_utilisateur?id=" + utilisateursTable.get(i).getId() + "\">Modifier</a></td>");
-                    out.println("</tr>");
-                }
-                out.println("</table>");
-                out.println("</div>");
-                out.println("</div>");
-                out.println("</body>");
-                out.println("</html>");
-            }
+        newUtilisateur.setStatut(true);
+        if (statut == null || statut.length == 0) {
+            newUtilisateur.setStatut(false);
         }
+        
+        newUtilisateur = dao.create(newUtilisateur);
+
+        utilisateursTable.put(utilisateursTable.size(), newUtilisateur);
+        response.sendRedirect(request.getContextPath() + "/succes.html");
 
     }
 
@@ -150,7 +84,8 @@ public class UtilisateurServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.sendRedirect(request.getContextPath() + "/utilisateurs.jsp");
     }
 
     /**

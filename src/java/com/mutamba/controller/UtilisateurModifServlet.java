@@ -5,6 +5,8 @@
  */
 package com.mutamba.controller;
 
+import com.mutamba.dao.UtilisateurDao;
+import com.mutamba.model.Utilisateur;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,36 +31,39 @@ public class UtilisateurModifServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String sid = request.getParameter("id");
         int id;
-        
-        if (sid.isEmpty())
-            response.sendRedirect( request.getContextPath() + "/error.html");
-        
-        try {
-            id = Integer.parseInt(sid);
-        }
-        
-        catch(Exception e){
-            response.sendRedirect( request.getContextPath() + "/error.html");
-        }
-       
-        
-        
-        
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UtilisateurModifServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UtilisateurModifServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        if (sid.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/error.html");
+        } else {
+            try {
+                id = Integer.parseInt(sid);
+
+                UtilisateurDao dao = new UtilisateurDao();
+                Utilisateur utilisateur = dao.find(id);
+
+                utilisateur.setNom(request.getParameter("nom"));
+                utilisateur.setPrenom(request.getParameter("prenom"));
+                utilisateur.setPwd(request.getParameter("pwd"));
+                utilisateur.setEmail(request.getParameter("email"));
+                utilisateur.setTelephone(request.getParameter("telephone"));
+                utilisateur.setRole(request.getParameter("role"));
+                
+                String[] statut = request.getParameterValues("statut");
+                if (statut.length == 0)
+                    utilisateur.setStatut(false);
+                else
+                    utilisateur.setStatut(true);
+                
+                dao.update(utilisateur);
+                response.sendRedirect(request.getContextPath() + "/succes.html");
+                
+            } catch (Exception e) {
+                response.sendRedirect(request.getContextPath() + "/error.html");
+            }
+
         }
     }
 
@@ -74,7 +79,8 @@ public class UtilisateurModifServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.sendRedirect(request.getContextPath() + "/index.html");
     }
 
     /**

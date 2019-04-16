@@ -4,8 +4,16 @@
     Author     : cquenum
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.util.Hashtable"%>
+<%@page import="com.mutamba.dao.UtilisateurDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.mutamba.model.Utilisateur"%>
+
+<% UtilisateurDao dao = new UtilisateurDao();
+    Hashtable<Integer, Utilisateur> utilisateurs = dao.find();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,49 +24,40 @@
     </head>
     <body>
         <div>
-            <div>
-                <ul>
-                    <li><a class="active" href="/Projet_SR03/index.html">Accueil</a></li>
-                    <li><a href="/Projet_SR03/ajout_utilisateur.html">Ajouter un Utilisateur</a></li>
-                    <li><a href="/Projet_SR03/ajout_competence.html">Ajouter une Compétence</a></li>
-                    <li><a href="/Projet_SR03/ajout_question.html">Ajouter une Question</a></li>
-                    <li><a href="/Projet_SR03/ajout_reponse.html">Ajouter une Réponse</a></li>
-                    <li><a href="/Projet_SR03/utilisateurs">Liste des Utilisateurs</a></li>
-                    <li><a href="/Projet_SR03/competences">Liste des Compétences</a></li>
-                    <li><a href="/Projet_SR03/questionnaires">Liste des Questionnaires</a></li>
-                    <li><a href="/Projet_SR03/questions">Liste des Questions</a></li>
-                    <li><a href="/Projet_SR03/reponses">Liste des Réponses</a></li>
-                    <li><a href="/Projet_SR03/parcours">Liste des Parcours</a></li>
-                </ul>
-            </div>
+            <%@include file="menu.jsp" %>
             <div class="container" style="margin-left:25%;padding:1px 16px;height:1000px;">
                 <h2>Liste des Utilisateurs</h2>
                 <table>
                     <tr>
+                        <th>Prénom</th>
                         <th>Nom</th>
-                        <th>Prénom/th>
                         <th>Email</th>
                         <th>Téléphone</th>
                         <th>Rôle</th>
+                        <th>Date création</th>
                         <th>Status</th>
+                        <th></th>
+                        <th></th>
                     </tr>
+                    <% for (int i = 0; i < utilisateurs.size(); i++) {%>
                     <tr>
-                        <td>Jill</td>
-                        <td>Smith</td>
-                        <td>50</td>
+                        <td><%=utilisateurs.get(i).getPrenom() %></td>
+                        <td><%=utilisateurs.get(i).getNom() %></td>
+                        <td><%=utilisateurs.get(i).getEmail() %></td>
+                        <td><%=utilisateurs.get(i).getTelephone() %></td>
+                        <td><%=utilisateurs.get(i).getRole() %></td>
+                        <td><%=utilisateurs.get(i).getDateCreation().format(formatter) %></td>
+                        <% if (utilisateurs.get(i).getStatut()) { %>
+                        <td>Actif</td>
+                        <% } else {
+                        %>
+                        <td>Inactif</td>
+                        <% }%>
+                        <td><a href="<%= request.getContextPath()%>/suppr_utilisateur?id=<%=utilisateurs.get(i).getId()%>">Supprimer</a></td>
+                        <td><a href="<%= request.getContextPath()%>/modif_utilisateur.jsp?id=<%=utilisateurs.get(i).getId()%>">Modifier</a></td>
                     </tr>
-                    <tr>
-                        <td>Eve</td>
-                        <td>Jackson</td>
-                        <td>94</td>
-                    </tr>
-                    <tr>
-                        <td>Adam</td>
-                        <td>Johnson</td>
-                        <td>67</td>
-                    </tr>
+                        <% }%>
                 </table>
-
             </div>
         </div>
     </body>

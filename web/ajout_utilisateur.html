@@ -19,12 +19,12 @@ and open the template in the editor.
                 <li><a href="/Projet_SR03/ajout_competence.html">Ajouter une Compétence</a></li>
                 <li><a href="/Projet_SR03/ajout_question.html">Ajouter une Question</a></li>
                 <li><a href="/Projet_SR03/ajout_reponse.html">Ajouter une Réponse</a></li>
-                <li><a href="/Projet_SR03/utilisateurs">Liste des Utilisateurs</a></li>
-                <li><a href="/Projet_SR03/competences">Liste des Compétences</a></li>
-                <li><a href="/Projet_SR03/questionnaires">Liste des Questionnaires</a></li>
-                <li><a href="/Projet_SR03/questions">Liste des Questions</a></li>
-                <li><a href="/Projet_SR03/reponses">Liste des Réponses</a></li>
-                <li><a href="/Projet_SR03/parcours">Liste des Parcours</a></li>
+                <li><a href="/Projet_SR03/utilisateurs.jsp">Liste des Utilisateurs</a></li>
+                <li><a href="/Projet_SR03/competences.jsp">Liste des Compétences</a></li>
+                <li><a href="/Projet_SR03/questionnaires.jsp">Liste des Questionnaires</a></li>
+                <li><a href="/Projet_SR03/questions.jsp">Liste des Questions</a></li>
+                <li><a href="/Projet_SR03/reponses.jsp">Liste des Réponses</a></li>
+                <li><a href="/Projet_SR03/parcours.jsp">Liste des Parcours</a></li>
             </ul>
         </div>
         <div style="margin-left:25%;padding:1px 16px;height:1000px;">
@@ -39,14 +39,14 @@ and open the template in the editor.
                         <input type="text" placeholder="Nom" name="nom" required>
                     </label>
                     <label for="email"><b>Email</b>
-                        <input type="text" placeholder="Email" name="email" required>
+                        <input type="email" placeholder="Email" name="email" required>
                     </label>
                     <label for="pwd"><b>Mot de passe</b>
-                        <input type="password" placeholder="Mot de passe" name="pwd" required>
+                        <input type="password" placeholder="Mot de passe" name="pwd" required pattern=".{6,}" title="Six caractères pu plus">
                     </label>
 
                     <label for="telephone"><b>Téléphone</b>
-                        <input type="text" placeholder="Téléphone" name="telephone" required>
+                        <input type="tel" placeholder="Téléphone" name="telephone" required>
                     </label>
 
                     <label>
