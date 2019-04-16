@@ -9,6 +9,7 @@ import com.mutamba.model.Utilisateur;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.util.Hashtable;
 
 /**
@@ -38,7 +39,7 @@ public class UtilisateurDao extends Dao<Utilisateur> {
                         result.getString("role")
                 );
                 utilisateur.setId(result.getInt("id"));
-                utilisateur.setDateCreation(result.getDate("dateCreation").toLocalDate());
+                utilisateur.setDateCreation(result.getTimestamp("dateCreation").toLocalDateTime());
                 utilisateur.setTelephone(result.getString("telephone"));
                 utilisateur.setStatut(result.getBoolean("statut"));
 
@@ -71,7 +72,7 @@ public class UtilisateurDao extends Dao<Utilisateur> {
             prepare.setString(4, obj.getPwd());
             prepare.setBoolean(5, obj.getStatut());
             prepare.setString(6, obj.getTelephone());
-            prepare.setDate(7, java.sql.Date.valueOf(obj.getDateCreation().toString()));
+            prepare.setTimestamp(7, Timestamp.valueOf(obj.getDateCreation()));
             prepare.setString(8, obj.getRole());
 
             prepare.executeUpdate();
@@ -116,7 +117,7 @@ public class UtilisateurDao extends Dao<Utilisateur> {
             prepare.setString(4, obj.getPwd());
             prepare.setBoolean(5, obj.getStatut());
             prepare.setString(6, obj.getTelephone());
-            prepare.setDate(7, java.sql.Date.valueOf(obj.getDateCreation()));
+            prepare.setTimestamp(7, Timestamp.valueOf(obj.getDateCreation()));
             prepare.setString(8, obj.getRole());
             prepare.setInt(9, obj.getId());
 
@@ -170,7 +171,7 @@ public class UtilisateurDao extends Dao<Utilisateur> {
                         result.getString("role")
                 );
                 utilisateur.setId(result.getInt("id"));
-                utilisateur.setDateCreation(result.getDate("dateCreation").toLocalDate());
+                utilisateur.setDateCreation(result.getTimestamp("dateCreation").toLocalDateTime());
                 utilisateur.setTelephone(result.getString("telephone"));
                 utilisateur.setStatut(result.getBoolean("statut"));
 

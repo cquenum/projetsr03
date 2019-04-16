@@ -9,6 +9,8 @@ import com.mutamba.dao.UtilisateurDao;
 import com.mutamba.model.Utilisateur;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -55,7 +57,10 @@ public class UtilisateurServlet extends HttpServlet {
             //newUtilisateur.setId(utilisateursTable.size() + 1);
 
             newUtilisateur.setTelephone(telephone);
-
+            
+            LocalDateTime dateCreation = LocalDateTime.now();
+            newUtilisateur.setDateCreation(dateCreation);
+            
             newUtilisateur.setStatut(true);
             if (statut.length == 0) {
                 newUtilisateur.setStatut(false);
@@ -66,7 +71,7 @@ public class UtilisateurServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/succes.html");
 
         } else if ("GET".equals(request.getMethod())) {
-
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
             try (PrintWriter out = response.getWriter()) {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
@@ -100,6 +105,7 @@ public class UtilisateurServlet extends HttpServlet {
                 out.println("<th>Email</th>");
                 out.println("<th>Téléphone</th>");
                 out.println("<th>Rôle</th>");
+                out.println("<th>Date création</th>");
                 out.println("<th>Statut</th>");
                 out.println("<th></th>");
                 out.println("<th></th>");
@@ -111,6 +117,7 @@ public class UtilisateurServlet extends HttpServlet {
                     out.println("<td>" + utilisateursTable.get(i).getEmail() + "</td>");
                     out.println("<td>" + utilisateursTable.get(i).getTelephone() + "</td>");
                     out.println("<td>" + utilisateursTable.get(i).getRole() + "</td>");
+                    out.println("<td>" + utilisateursTable.get(i).getDateCreation().format(formatter) + "</td>");
                     if (utilisateursTable.get(i).getStatut()) {
                         out.println("<td>Actif</td>");
                     } else {

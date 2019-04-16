@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS utilisateur (
 		pwd VARCHAR(255) NOT NULL,
 		statut BOOLEAN NOT NULL,
 		telephone VARCHAR(255),
-		dateCreation DATE,
+		dateCreation TIMESTAMP,
 		ROLE VARCHAR(255) NOT NULL,
 		PRIMARY KEY (id)
 );

@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package com.mutamba.model;
-import java.time.LocalDate;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -19,7 +19,7 @@ public class Utilisateur {
     private String pwd;
     private boolean statut;
     private String telephone;
-    private LocalDate dateCreation;
+    private LocalDateTime dateCreation;
     private String role;
     
     public Utilisateur(){
@@ -75,11 +75,11 @@ public class Utilisateur {
         return this.statut;
     }
     
-    public LocalDate getDateCreation(){
+    public LocalDateTime getDateCreation(){
         return this.dateCreation;
     }
     
-    public void setDateCreation(LocalDate dateCreation){
+    public void setDateCreation(LocalDateTime dateCreation){
         this.dateCreation = dateCreation;
     }
     
@@ -107,14 +107,14 @@ public class Utilisateur {
     }    
     @Override
     public String toString(){
-        SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         return "{id:" + this.id + ", "
                 + "nom:\""+ this.nom  + "\","
                 + "prenom:\"" + this.prenom + "\","
                 + "email:\"" + this.email + "\","
                 + "pwd:\"" + this.pwd + "\","
                 + "statut:\"" + this.statut + "\","
-                + "dateCreation:\"" + ft.format(this.dateCreation) + "\","
+                + "dateCreation:\"" + this.dateCreation.format(formatter) + "\","
                 + "role:\"" + this.role + "\","
                 + "}";
     }
