@@ -8,7 +8,6 @@ package com.mutamba.controller;
 import com.mutamba.dao.CompetenceDao;
 import com.mutamba.model.Competence;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Hashtable;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author albertmutamba
  */
 public class CompetenceServlet extends HttpServlet {
-    
-private static Hashtable<Integer, Competence> competencesTable = new Hashtable<Integer, Competence>();
+
+    private static Hashtable<Integer, Competence> competencesTable = new Hashtable<Integer, Competence>();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,21 +34,19 @@ private static Hashtable<Integer, Competence> competencesTable = new Hashtable<I
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         CompetenceDao dao = new CompetenceDao();
-        
+
         competencesTable = dao.find();
-        
+
         String sujet = request.getParameter("sujet");
-       Competence newCompetence = new Competence(sujet);
-       newCompetence = dao.create(newCompetence);
+        Competence newCompetence = new Competence(sujet);
+        newCompetence = dao.create(newCompetence);
 
         //newCompetence.setId(competencesTable.size() + 1);
-        
         competencesTable.put(competencesTable.size(), newCompetence);
         response.sendRedirect(request.getContextPath() + "/succes.html");
 
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,11 +60,10 @@ private static Hashtable<Integer, Competence> competencesTable = new Hashtable<I
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
-       // processRequest(request, response);
-         response.sendRedirect(request.getContextPath() + "/competences.jsp");
-        
+            throws ServletException, IOException {
+        // processRequest(request, response);
+        response.sendRedirect(request.getContextPath() + "/competences.jsp");
+
     }
 
     /**

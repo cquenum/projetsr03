@@ -27,6 +27,10 @@ public class Question {
         this.id = id;
     }
     
+    public int getId(){
+        return this.id;
+    }
+    
     public String getValeur(){
         return this.valeur;
     }

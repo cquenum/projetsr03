@@ -8,9 +8,7 @@ package com.mutamba.dao;
 import com.mutamba.model.Competence;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Hashtable;
+import java.sql.SQLException;import java.util.Hashtable;
 
 /**
  *
@@ -79,7 +77,7 @@ public class CompetenceDao extends Dao<Competence> {
 
             PreparedStatement prepare = this.connect
                     .prepareStatement(
-                                  "UPDATE competence SET sujet = ?, "
+                                  "UPDATE competence SET sujet = ? "
                             + "WHERE id = ?"
                     );
 

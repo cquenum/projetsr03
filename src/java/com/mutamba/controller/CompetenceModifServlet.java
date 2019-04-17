@@ -8,7 +8,6 @@ package com.mutamba.controller;
 import com.mutamba.dao.CompetenceDao;
 import com.mutamba.model.Competence;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +28,7 @@ public class CompetenceModifServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String sid = request.getParameter("id");
@@ -45,10 +44,10 @@ public class CompetenceModifServlet extends HttpServlet {
                 Competence competence = dao.find(id);
 
                 competence.setSujet(request.getParameter("sujet"));
-                
+
                 dao.update(competence);
                 response.sendRedirect(request.getContextPath() + "/succes.html");
-                
+
             } catch (Exception e) {
                 response.sendRedirect(request.getContextPath() + "/error.html");
             }

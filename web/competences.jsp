@@ -29,7 +29,7 @@
                 <table>
                     <tr>
                         <th>Sujet</th>
-                        
+                        <th></th>
                         <th></th>
                     </tr>
                     <% for (int i = 0; i < competences.size(); i++) {%>
