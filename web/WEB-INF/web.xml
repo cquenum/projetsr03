@@ -28,6 +28,18 @@
         <servlet-name>UtilisateurModifServlet</servlet-name>
         <servlet-class>com.mutamba.controller.UtilisateurModifServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CompetenceServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.CompetenceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompetenceModifServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.CompetenceModifServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompetenceSupprServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.CompetenceSupprServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UtilisateurServlet</servlet-name>
         <url-pattern>/utilisateurs</url-pattern>
@@ -55,6 +67,18 @@
     <servlet-mapping>
         <servlet-name>UtilisateurModifServlet</servlet-name>
         <url-pattern>/modif_utilisateur</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompetenceServlet</servlet-name>
+        <url-pattern>/competences</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompetenceModifServlet</servlet-name>
+        <url-pattern>/modif_competence</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompetenceSupprServlet</servlet-name>
+        <url-pattern>/suppr_competence</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

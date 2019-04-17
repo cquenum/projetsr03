@@ -28,7 +28,9 @@ public class MysqlConnection {
      */
     /**
      * URL de connection
-     */
+     * pour la base mysql local faire
+     * private static final String url = "jdbc:mysql://localhost:3306/mVklwn0hfR?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
+     */ 
     private static final String url = "jdbc:mysql://remotemysql.com:3306/mVklwn0hfR?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
     /**
      * Nom du user
@@ -38,7 +40,7 @@ public class MysqlConnection {
      * Mot de passe du user
      */
     private static final String passwd = "uXJtB5yTtB";
-    /**
+    /**  encapsulation:accessibilité (private,public,protected=ds meme pckg))
      * Objet Connection
      */
     private static Connection connect;
@@ -46,7 +48,7 @@ public class MysqlConnection {
     /**
      * Méthode qui va nous retourner notre instance et la créer si elle n'existe
      * pas...
-     *
+     *ci-après getInstance permet de créer ou instancie UN SINGLETON  cad crée un SEUL OBJET car tout est STATIC et le retourne
      * @return
      */
     public static Connection getInstance() {

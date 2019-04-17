@@ -11,7 +11,7 @@ import java.util.Hashtable;
 /**
  *
  * @author cquenum
- * @param <T>
+ * @param <T> operateur diamant : une classe T générique représente toutes les classes du modele qui seront en base mysql  est appéléé comme paramettre d'une autre classe
  */
 public abstract class Dao<T> {
     public Connection connect = MysqlConnection.getInstance();
