@@ -75,6 +75,7 @@ public class ReponseDao extends Dao<Reponse>{
                                         result.getInt("id_question")
                                 )
                 );
+                reponses.put(reponses.size(), reponse);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -121,7 +122,7 @@ public class ReponseDao extends Dao<Reponse>{
                     .prepareStatement(
                             "UPDATE reponse SET valeur = ?, "
                             + "statut = ?, "
-                            + "id_question = ?, "
+                            + "id_question = ? "
                             + "WHERE id = ?"
                     );
 

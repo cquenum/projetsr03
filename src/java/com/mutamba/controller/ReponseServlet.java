@@ -5,8 +5,10 @@
  */
 package com.mutamba.controller;
 
+import com.mutamba.dao.QuestionDao;
+import com.mutamba.dao.ReponseDao;
+import com.mutamba.model.Reponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,17 +32,38 @@ public class ReponseServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ReponseServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ReponseServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        ReponseDao dao = new ReponseDao();
+        Reponse reponse = new Reponse();
+
+        String sid_question = request.getParameter("questions");
+        String valeur = request.getParameter("reponse");
+        String[] statut = request.getParameterValues("statut");
+        String[] bonne = request.getParameterValues("bonne");
+
+        try {
+            int id_question = Integer.parseInt(sid_question);
+            reponse.setQuestion(
+                    new QuestionDao()
+                            .find(id_question)
+            );
+
+            reponse.setValeur(valeur);
+
+            reponse.setStatut(true);
+            if (statut == null || statut.length == 0) {
+                reponse.setStatut(false);
+            }
+            reponse.setBonne(false);
+            if (statut == null || statut.length == 0) {
+                reponse.setBonne(true);
+            }
+
+            dao.create(reponse);
+            response.sendRedirect(request.getContextPath() + "/succes.html");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/error.html");
         }
     }
 

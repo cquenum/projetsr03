@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS parcours_reponse (
 		id_parcours INT,
 		id_reponse INT,
 		FOREIGN KEY (id_parcours) REFERENCES parcours (id),
-		FOREIGN KEY (id_reponse) REFERENCES reponse (id)
+		FOREIGN KEY (id_reponse) REFERENCES reponse (id),
+                PRIMARY KEY (id_parcours, id_reponse)
 );
 

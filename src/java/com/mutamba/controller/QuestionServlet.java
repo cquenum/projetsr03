@@ -5,8 +5,10 @@
  */
 package com.mutamba.controller;
 
+import com.mutamba.dao.QuestionDao;
+import com.mutamba.dao.QuestionnaireDao;
+import com.mutamba.model.Question;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,17 +32,33 @@ public class QuestionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet QuestionServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet QuestionServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        QuestionDao dao = new QuestionDao();
+        Question question = new Question();
+
+        String sid_competence = request.getParameter("questionnaires");
+        String valeur = request.getParameter("question");
+        String[] statut = request.getParameterValues("statut");
+
+        try {
+            int id_competence = Integer.parseInt(sid_competence);
+            question.setQuestionnaire(
+                    new QuestionnaireDao()
+                            .find(id_competence)
+            );
+
+            question.setValeur(valeur);
+
+            question.setStatut(true);
+            if (statut == null || statut.length == 0) {
+                question.setStatut(false);
+            }
+
+            dao.create(question);
+            response.sendRedirect(request.getContextPath() + "/succes.html");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/error.html");
         }
     }
 
@@ -56,7 +74,8 @@ public class QuestionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.sendRedirect(request.getContextPath() + "/index.html");
     }
 
     /**

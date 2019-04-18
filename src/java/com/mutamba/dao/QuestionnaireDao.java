@@ -75,6 +75,7 @@ public class QuestionnaireDao extends Dao<Questionnaire>{
                                         result.getInt("id_competence")
                                 )
                 );
+                questionnaires.put(questionnaires.size(), questionnaire);
             }
         } catch(SQLException e){
             e.printStackTrace();
@@ -120,7 +121,7 @@ public class QuestionnaireDao extends Dao<Questionnaire>{
                     .prepareStatement(
                             "UPDATE questionnaire SET valeur = ?, "
                             + "statut = ?, "
-                            + "id_competence = ?, "
+                            + "id_competence = ? "
                             + "WHERE id = ?"
                     );
             
@@ -128,6 +129,8 @@ public class QuestionnaireDao extends Dao<Questionnaire>{
             prepare.setBoolean(2, obj.getStatut());
             prepare.setInt(3, obj.getCompetence().getId());
             prepare.setInt(4, obj.getId());
+            
+            prepare.executeUpdate();
             
             obj = this.find(obj.getId());
             

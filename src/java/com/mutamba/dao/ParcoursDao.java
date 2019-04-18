@@ -9,19 +9,20 @@ import com.mutamba.model.Parcours;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Hashtable;
 
 /**
  *
  * @author cquenum
  */
-public class ParcoursDao extends Dao<Parcours>{
+public class ParcoursDao extends Dao<Parcours> {
 
     @Override
     public Parcours find(int id) {
         Parcours parcours = new Parcours();
-        
-        try{
+
+        try {
             ResultSet result = this.connect
                     .createStatement(
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -29,7 +30,7 @@ public class ParcoursDao extends Dao<Parcours>{
                     .executeQuery(
                             "SELECT * FROM parcours WHERE id = " + id
                     );
-            
+
             if (result.first()) {
                 parcours = new Parcours(
                         new UtilisateurDao().find(result.getInt("id_utilisateur")),
@@ -37,38 +38,37 @@ public class ParcoursDao extends Dao<Parcours>{
                 );
                 parcours.setId(result.getInt("id"));
                 parcours.setDuree(result.getInt("duree"));
-                
+
                 result = this.connect
-                    .createStatement(
-                            ResultSet.TYPE_SCROLL_INSENSITIVE,
-                            ResultSet.CONCUR_UPDATABLE)
-                    .executeQuery(
-                            "SELECT * FROM parcours_reponse WHERE id_parcours = " + id
-                    );
-                
-                
-                while(result.next()){
+                        .createStatement(
+                                ResultSet.TYPE_SCROLL_INSENSITIVE,
+                                ResultSet.CONCUR_UPDATABLE)
+                        .executeQuery(
+                                "SELECT * FROM parcours_reponse WHERE id_parcours = " + id
+                        );
+
+                while (result.next()) {
                     parcours.addReponse(
                             new ReponseDao()
                                     .find(result.getInt("id_reponse")
-                            )
+                                    )
                     );
                 }
-                
+
                 parcours.setScore();
-                
+
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return parcours;
     }
 
     @Override
     public Hashtable<Integer, Parcours> find() {
-        Hashtable<Integer, Parcours> parcours = new Hashtable<Integer,Parcours>();
-        
+        Hashtable<Integer, Parcours> parcours = new Hashtable<Integer, Parcours>();
+
         try {
             ResultSet result = this.connect
                     .createStatement(
@@ -77,14 +77,14 @@ public class ParcoursDao extends Dao<Parcours>{
                     .executeQuery(
                             "SELECT id FROM parcours"
                     );
-            while (result.next()){
+            while (result.next()) {
                 parcours.put(parcours.size(), this.find(result.getInt("id")));
             }
-            
-        } catch (SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return parcours;
     }
 
@@ -132,7 +132,7 @@ public class ParcoursDao extends Dao<Parcours>{
                             + "id_questionnaire = ? "
                             + "WHERE id = ?"
                     );
-            
+
             prepare.setInt(1, obj.getScore());
             prepare.setInt(2, obj.getDuree());
             prepare.setInt(3, obj.getStagiaire().getId());
@@ -140,9 +140,9 @@ public class ParcoursDao extends Dao<Parcours>{
             prepare.setInt(5, obj.getId());
 
             prepare.executeUpdate();
-            
+
             obj = this.find(obj.getId());
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -152,7 +152,41 @@ public class ParcoursDao extends Dao<Parcours>{
 
     @Override
     public void delete(Parcours obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement statement = this.connect.createStatement();
+            statement.addBatch("DELETE FROM parcours_reponse WHERE id_parcours = " + obj.getId());
+            statement.addBatch("DELETE FROM parcours WHERE id_parcours = " + obj.getId());
+
+            statement.executeBatch();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    
+
+    public Parcours saveReponse(Parcours obj) {
+
+        for (int i = 0; i < obj.getReponses().size(); i++) {
+            try {
+                PreparedStatement prepare = this.connect
+                        .prepareStatement(
+                                "INSERT INTO parcours_reponse(id_parcours, id_reponse)"
+                                + " VALUES(?, ?)"
+                        );
+
+                prepare.setInt(1, obj.getId());
+                prepare.setInt(2, obj.getReponses().get(i).getId());
+
+                prepare.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        obj = this.find(obj.getId());
+
+        return obj;
+    }
+
 }

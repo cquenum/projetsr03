@@ -5,7 +5,6 @@
  */
 package com.mutamba.controller;
 
-import com.mutamba.dao.CompetenceDao;
 import com.mutamba.dao.QuestionnaireDao;
 import com.mutamba.model.Questionnaire;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cquenum
  */
-public class QuestionnaireServlet extends HttpServlet {
+public class QuestionnaireSupprServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,34 +31,24 @@ public class QuestionnaireServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String sid = request.getParameter("id");
 
-        QuestionnaireDao dao = new QuestionnaireDao();
-        Questionnaire questionnaire = new Questionnaire();
-
-        String sid_competence = request.getParameter("competences");
-        String valeur = request.getParameter("questionnaire");
-        String[] statut = request.getParameterValues("statut");
-
-        try {
-            int id_competence = Integer.parseInt(sid_competence);
-            questionnaire.setCompetence(
-                    new CompetenceDao()
-                            .find(id_competence)
-            );
-
-            questionnaire.setValeur(valeur);
-
-            questionnaire.setStatut(true);
-            if (statut == null || statut.length == 0) {
-                questionnaire.setStatut(false);
-            }
-
-            dao.create(questionnaire);
-            response.sendRedirect(request.getContextPath() + "/succes.html");
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (sid.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/error.html");
+        } else {
+            try {
+                int id = Integer.parseInt(sid);
+                
+                QuestionnaireDao dao = new QuestionnaireDao();
+                Questionnaire questionnaire = dao.find(id);
+                
+                dao.delete(questionnaire);
+                
+                response.sendRedirect(request.getContextPath() + "/succes.html");
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.sendRedirect(request.getContextPath() + "/error.html");
+            }
         }
     }
 
@@ -75,9 +64,7 @@ public class QuestionnaireServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        response.sendRedirect(request.getContextPath() + "/index.html");
-
+        processRequest(request, response);
     }
 
     /**

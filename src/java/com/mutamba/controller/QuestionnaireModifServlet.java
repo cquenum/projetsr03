@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cquenum
  */
-public class QuestionnaireServlet extends HttpServlet {
+public class QuestionnaireModifServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,34 +32,40 @@ public class QuestionnaireServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String sid = request.getParameter("id");
+        int id;
 
-        QuestionnaireDao dao = new QuestionnaireDao();
-        Questionnaire questionnaire = new Questionnaire();
+        if (sid.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/error.html");
+        } else {
+            try {
+                id = Integer.parseInt(sid);
 
-        String sid_competence = request.getParameter("competences");
-        String valeur = request.getParameter("questionnaire");
-        String[] statut = request.getParameterValues("statut");
+                QuestionnaireDao dao = new QuestionnaireDao();
+                Questionnaire questionnaire = dao.find(id);
 
-        try {
-            int id_competence = Integer.parseInt(sid_competence);
-            questionnaire.setCompetence(
+                questionnaire.setValeur(request.getParameter("valeur"));
+                
+                String[] statut = request.getParameterValues("statut");
+                if (statut == null || statut.length == 0) {
+                    questionnaire.setStatut(false);
+                }
+                
+                String sid_competence = request.getParameter("competences");
+                
+                questionnaire.setCompetence(
                     new CompetenceDao()
-                            .find(id_competence)
+                            .find(Integer.parseInt(sid_competence))
             );
 
-            questionnaire.setValeur(valeur);
+                dao.update(questionnaire);
+                response.sendRedirect(request.getContextPath() + "/succes.html");
 
-            questionnaire.setStatut(true);
-            if (statut == null || statut.length == 0) {
-                questionnaire.setStatut(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.sendRedirect(request.getContextPath() + "/error.html");
             }
 
-            dao.create(questionnaire);
-            response.sendRedirect(request.getContextPath() + "/succes.html");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/error.html");
         }
     }
 
@@ -75,9 +81,7 @@ public class QuestionnaireServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        response.sendRedirect(request.getContextPath() + "/index.html");
-
+        processRequest(request, response);
     }
 
     /**

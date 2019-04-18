@@ -54,6 +54,15 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, inp
   outline: none;
 }
 
+select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;

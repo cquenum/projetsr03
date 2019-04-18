@@ -6,6 +6,7 @@
 
 <%@page import="com.mutamba.model.Utilisateur"%>
 <%@page import="com.mutamba.dao.UtilisateurDao"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%! Utilisateur utilisateur = new Utilisateur(); %>
 <% String sid = request.getParameter("id");
@@ -55,7 +56,7 @@ else
                     </label>
 
                     <label for="telephone"><b>Téléphone</b>
-                        <input type="tel" placeholder="Téléphone" name="telephone" value="<%= utilisateur.getTelephone() %>" required>
+                        <input type="tel" placeholder="Téléphone" name="telephone" value="<%= utilisateur.getTelephone() %>" required pattern="(?:(?:\+|00)33|0)\s*?[1-9](?:[\s.-]*?\d{2}){4}">
                     </label>
 
                     <label>

@@ -40,6 +40,22 @@
         <servlet-name>CompetenceSupprServlet</servlet-name>
         <servlet-class>com.mutamba.controller.CompetenceSupprServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuestionnaireModifServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.QuestionnaireModifServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionnaireSupprServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.QuestionnaireSupprServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionModifServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.QuestionModifServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionSupprServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.QuestionSupprServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UtilisateurServlet</servlet-name>
         <url-pattern>/utilisateurs</url-pattern>
@@ -79,6 +95,22 @@
     <servlet-mapping>
         <servlet-name>CompetenceSupprServlet</servlet-name>
         <url-pattern>/suppr_competence</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionnaireModifServlet</servlet-name>
+        <url-pattern>/modif_questionnaire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionnaireSupprServlet</servlet-name>
+        <url-pattern>/suppr_questionnaire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionModifServlet</servlet-name>
+        <url-pattern>/modif_question</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionSupprServlet</servlet-name>
+        <url-pattern>/suppr_question</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,8 +10,9 @@
         <li><a class="active" href="/Projet_SR03/index.html">Accueil</a></li>
         <li><a href="<%= request.getContextPath()%>/ajout_utilisateur.html">Ajouter un Utilisateur</a></li>
         <li><a href="<%= request.getContextPath()%>/ajout_competence.html">Ajouter une Compétence</a></li>
-        <li><a href="<%= request.getContextPath()%>/ajout_question.html">Ajouter une Question</a></li>
-        <li><a href="<%= request.getContextPath()%>/ajout_reponse.html">Ajouter une Réponse</a></li>
+        <li><a href="<%= request.getContextPath()%>/ajout_questionnaire.jsp">Ajouter un Questionnaire</a></li>
+        <li><a href="<%= request.getContextPath()%>/ajout_question.jsp">Ajouter une Question</a></li>
+        <li><a href="<%= request.getContextPath()%>/ajout_reponse.jsp">Ajouter une Réponse</a></li>
         <li><a href="<%= request.getContextPath()%>/utilisateurs.jsp">Liste des Utilisateurs</a></li>
         <li><a href="<%= request.getContextPath()%>/competences.jsp">Liste des Compétences</a></li>
         <li><a href="<%= request.getContextPath()%>/questionnaires.jsp">Liste des Questionnaires</a></li>
