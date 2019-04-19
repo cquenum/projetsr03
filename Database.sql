@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS question (
 CREATE TABLE IF NOT EXISTS reponse (
 		id INT AUTO_INCREMENT,
 		valeur VARCHAR(255) NOT NULL,
-		satut BOOLEAN,
+		statut BOOLEAN,
 		bonne BOOLEAN,
 		id_question int,
 		FOREIGN KEY (id_question) REFERENCES question (id),

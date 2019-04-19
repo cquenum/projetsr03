@@ -12,19 +12,21 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
-        <div  style="width:50%;loat:left;">
-            <form action="/login.html" method="POST">
-                <div class="container">
-                    <label for="uname"><b>Email</b></label>
-                    <input type="text" placeholder="Entrez votre email" name="uname" required>
+        <div style="display:flex;">
+            <form style="margin:auto;" action="/login" method="POST">
+            <div class="container" >
+                <label for="email"><b>Email</b>
+                <input type="email" placeholder="Entrez votre email" name="email" required>
+                </label>
 
-                    <label for="psw"><b>Mot de passe</b></label>
-                    <input type="password" placeholder="Entrez votre mot de passe" name="psw" required>
-                    
-                    <button type="button" class="cancelbtn">Annuler</button>
-                    <button type="submit" class="signupbtn">Se connecter</button>
-                </div>
-            </form>
+                <label for="pwd"><b>Mot de passe</b>
+                <input type="password" placeholder="Entrez votre mot de passe" name="pwd" required>
+                </label>
+
+                <input type="reset" class="cancelbtn" value="Annuler">
+                <button type="submit" class="signupbtn">Se connecter</button>
+            </div>
+        </form>
         </div>
     </body>
 </html>

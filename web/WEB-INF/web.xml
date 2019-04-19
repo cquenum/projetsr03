@@ -56,6 +56,10 @@
         <servlet-name>QuestionSupprServlet</servlet-name>
         <servlet-class>com.mutamba.controller.QuestionSupprServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UtilisateurServlet</servlet-name>
         <url-pattern>/utilisateurs</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>QuestionSupprServlet</servlet-name>
         <url-pattern>/suppr_question</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

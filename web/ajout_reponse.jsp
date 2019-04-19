@@ -24,7 +24,7 @@
             <p>Veuillez remplir le formulaire pour créer une nouvelle réponse</p>
             <form action="<%= request.getContextPath() %>/reponses" method="POST">
                 <div class="container">
-                    <label for="questions"><b>Competence: </b>
+                    <label for="questions"><b>Question: </b>
                         <select name="questions">
                             <% Hashtable<Integer, Question> question = new QuestionDao().find();
                                 for (int i = 0; i < question.size(); i++) {%>
@@ -47,6 +47,7 @@
                     </label>
                     <br/>
                     <div class="clearfix">
+                        <input type="reset" class="cancelbtn" value="Effacer">
                         <button type="submit" class="signupbtn">Enregistrer</button>
                     </div>
                 </div>
