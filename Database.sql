@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS utilisateur (
 		id INT AUTO_INCREMENT,
 		nom VARCHAR(255) NOT NULL,
 		prenom VARCHAR(255) NOT NULL,
-		email VARCHAR(255) NOT NULL,
+		email VARCHAR(255) UNIQUE NOT NULL,
 		pwd VARCHAR(255) NOT NULL,
 		statut BOOLEAN NOT NULL,
 		telephone VARCHAR(255),
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS competence (
 
 CREATE TABLE IF NOT EXISTS questionnaire (
 		id INT AUTO_INCREMENT,
-		valeur VARCHAR(255) NOT NULL,
+		valeur VARCHAR(255) UNIQUE NOT NULL,
 		statut BOOLEAN,
 		id_competence int,
 		FOREIGN KEY (id_competence) REFERENCES competence (id),

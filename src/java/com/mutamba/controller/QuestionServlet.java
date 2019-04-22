@@ -54,11 +54,11 @@ public class QuestionServlet extends HttpServlet {
             }
 
             dao.create(question);
-            response.sendRedirect(request.getContextPath() + "/succes.html");
+            response.sendRedirect(request.getContextPath() + "/admin/succes.html");
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/error.html");
+            response.sendRedirect(request.getContextPath() + "/admin/error.html");
         }
     }
 

@@ -6,6 +6,7 @@
 package com.mutamba.dao;
 
 import com.mutamba.model.Parcours;
+import com.mutamba.model.Utilisateur;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -187,6 +188,28 @@ public class ParcoursDao extends Dao<Parcours> {
         obj = this.find(obj.getId());
 
         return obj;
+    }
+
+    public Hashtable<Integer, Parcours> find(Utilisateur utilisateur) {
+        Hashtable<Integer, Parcours> parcours = new Hashtable<Integer, Parcours>();
+
+        try {
+            ResultSet result = this.connect
+                    .createStatement(
+                            ResultSet.TYPE_SCROLL_INSENSITIVE,
+                            ResultSet.CONCUR_UPDATABLE)
+                    .executeQuery(
+                            "SELECT id FROM parcours WHERE id_utilisateur = " + utilisateur.getId()
+                    );
+            while (result.next()) {
+                parcours.put(parcours.size(), this.find(result.getInt("id")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return parcours;
+
     }
 
 }

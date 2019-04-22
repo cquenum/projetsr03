@@ -184,4 +184,25 @@ public class UtilisateurDao extends Dao<Utilisateur> {
         return utilisateursTable;
     }
 
+    public Utilisateur checkLogin(String email, String pwd) {
+        Utilisateur utilisateur = null;
+        try {
+            ResultSet result = this.connect
+                    .createStatement(
+                            ResultSet.TYPE_SCROLL_INSENSITIVE,
+                            ResultSet.CONCUR_UPDATABLE)
+                    .executeQuery(
+                            "SELECT id FROM utilisateur WHERE "
+                                    + "email='" + email.trim() + "' " 
+                                    + "AND pwd='" + pwd + "'"
+                    );
+
+            if (result.first()) {
+                utilisateur = this.find(result.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return utilisateur;
+    }
 }

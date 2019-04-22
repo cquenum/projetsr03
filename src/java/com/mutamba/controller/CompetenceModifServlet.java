@@ -35,7 +35,7 @@ public class CompetenceModifServlet extends HttpServlet {
         int id;
 
         if (sid.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/error.html");
+            response.sendRedirect(request.getContextPath() + "/admin/error.html");
         } else {
             try {
                 id = Integer.parseInt(sid);
@@ -46,10 +46,10 @@ public class CompetenceModifServlet extends HttpServlet {
                 competence.setSujet(request.getParameter("sujet"));
 
                 dao.update(competence);
-                response.sendRedirect(request.getContextPath() + "/succes.html");
+                response.sendRedirect(request.getContextPath() + "/admin/succes.html");
 
             } catch (Exception e) {
-                response.sendRedirect(request.getContextPath() + "/error.html");
+                response.sendRedirect(request.getContextPath() + "/admin/error.html");
             }
 
         }

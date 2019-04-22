@@ -6,6 +6,7 @@
 package com.mutamba.dao;
 
 import com.mutamba.model.Question;
+import com.mutamba.model.Questionnaire;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -154,6 +155,28 @@ public class QuestionDao extends Dao<Question> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public Hashtable<Integer, Question> find(Questionnaire questionnaire) {
+        Hashtable<Integer, Question> questions = new Hashtable<Integer, Question>();
+
+        try {
+            ResultSet result = this.connect
+                    .createStatement(
+                            ResultSet.TYPE_SCROLL_INSENSITIVE,
+                            ResultSet.CONCUR_UPDATABLE)
+                    .executeQuery(
+                            "SELECT id FROM question WHERE id_questionnaire = " + questionnaire.getId()
+                    );
+
+            while (result.next()) {
+                questions.put(questions.size(), this.find(result.getInt("id")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return questions;
     }
 
 }

@@ -34,7 +34,7 @@ public class QuestionnaireSupprServlet extends HttpServlet {
         String sid = request.getParameter("id");
 
         if (sid.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/error.html");
+            response.sendRedirect(request.getContextPath() + "/admin/error.html");
         } else {
             try {
                 int id = Integer.parseInt(sid);
@@ -44,10 +44,10 @@ public class QuestionnaireSupprServlet extends HttpServlet {
                 
                 dao.delete(questionnaire);
                 
-                response.sendRedirect(request.getContextPath() + "/succes.html");
+                response.sendRedirect(request.getContextPath() + "/admin/succes.html");
             } catch (Exception e) {
                 e.printStackTrace();
-                response.sendRedirect(request.getContextPath() + "/error.html");
+                response.sendRedirect(request.getContextPath() + "/admin/error.html");
             }
         }
     }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Ajouter une nouvelle Compétence</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/Projet_SR03/static/style.css"/>
+    </head>
+    <body>
+        <div>
+            <ul>
+                <li><a class="active" href="/Projet_SR03/admin/index.html">Accueil</a></li>
+                <li><a href="/Projet_SR03/admin/ajout_utilisateur.html">Ajouter un Utilisateur</a></li>
+                    <li><a href="/Projet_SR03/admin/ajout_competence.html">Ajouter une Compétence</a></li>
+                    <li><a href="/Projet_SR03/admin/ajout_questionnaire.jsp">Ajouter un Questionnaire</a></li>
+                    <li><a href="/Projet_SR03/admin/ajout_question.jsp">Ajouter une Question</a></li>
+                    <li><a href="/Projet_SR03/admin/ajout_reponse.jsp">Ajouter une Réponse</a></li>
+                    <li><a href="/Projet_SR03/admin/utilisateurs.jsp">Liste des Utilisateurs</a></li>
+                    <li><a href="/Projet_SR03/admin/competences.jsp">Liste des Compétences</a></li>
+                    <li><a href="/Projet_SR03/admin/questionnaires.jsp">Liste des Questionnaires</a></li>
+                    <li><a href="/Projet_SR03/admin/questions.jsp">Liste des Questions</a></li>
+                    <li><a href="/Projet_SR03/admin/reponses.jsp">Liste des Réponses</a></li>
+                    <li><a href="/Projet_SR03/admin/parcours.jsp">Liste des Parcours</a></li>
+            </ul>
+        </div>
+        <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+            <h1>Nouvelle Compétence</h1>
+            <p>Veuillez remplir le formulaire pour créer une nouvelle compétence</p>
+            <form action="/Projet_SR03/admin/competences" method="POST">
+                <div class="container">
+                    <label for="sujet"><b>Compétence</b>
+                        <input type="text" placeholder="Sujet" name="sujet" required>
+                    </label>
+                    
+                    <div class="clearfix">
+                        <button type="submit" class="signupbtn">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+        </div>    
+    </body>
+</html>

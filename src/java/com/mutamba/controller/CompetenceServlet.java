@@ -45,7 +45,7 @@ public class CompetenceServlet extends HttpServlet {
 
         //newCompetence.setId(competencesTable.size() + 1);
         competencesTable.put(competencesTable.size(), newCompetence);
-        response.sendRedirect(request.getContextPath() + "/succes.html");
+        response.sendRedirect(request.getContextPath() + "/admin/succes.html");
 
     }
 

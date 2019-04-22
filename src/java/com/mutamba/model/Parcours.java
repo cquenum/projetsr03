@@ -12,9 +12,9 @@ import java.util.Hashtable;
  * @author cquenum
  */
 public class Parcours {
-    private int id;
-    private int duree;
-    private int score;
+    private int id = 0;
+    private int duree = 0;
+    private int score = 0;
     private Utilisateur stagiaire;
     private Questionnaire questionnaire;
     private Hashtable<Integer, Reponse> reponses;
@@ -55,9 +55,10 @@ public class Parcours {
     
     public void setScore(){
         this.score = 0;
-        for (int i = 0; i < this.reponses.size(); i++)
-            if (this.reponses.get(i).estBonne())
-                this.score += 1;
+        if (this.reponses != null)
+            for (int i = 0; i < this.reponses.size(); i++)
+                if (this.reponses.get(i).estBonne())
+                    this.score += 1;
     }
     
     public Utilisateur getStagiaire(){

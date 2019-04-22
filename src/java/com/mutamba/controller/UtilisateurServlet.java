@@ -66,7 +66,7 @@ public class UtilisateurServlet extends HttpServlet {
         newUtilisateur = dao.create(newUtilisateur);
 
         utilisateursTable.put(utilisateursTable.size(), newUtilisateur);
-        response.sendRedirect(request.getContextPath() + "/succes.html");
+        response.sendRedirect(request.getContextPath() + "/admin/succes.html");
 
     }
 

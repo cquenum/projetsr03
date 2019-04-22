@@ -5,12 +5,14 @@
  */
 package com.mutamba.controller;
 
+import com.mutamba.dao.UtilisateurDao;
+import com.mutamba.model.Utilisateur;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,17 +32,47 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        // get request parameters for username and password
+        String email = request.getParameter("email");
+        String pwd = request.getParameter("pwd");
+        String[] remember = request.getParameterValues("remember");
+        
+        Utilisateur utilisateur = new UtilisateurDao().checkLogin(email, pwd);
+
+        if (utilisateur != null) {
+            //get the old session and invalidate
+            HttpSession oldSession = request.getSession(false);
+            if (oldSession != null) {
+                oldSession.invalidate();
+            }
+            //generate a new session
+            HttpSession newSession = request.getSession(true);
+            newSession.setAttribute("utilisateur", utilisateur);
+
+            //setting session to expiry 
+            if (remember == null)
+                // in 5 mins
+                newSession.setMaxInactiveInterval(5 * 60);
+            else
+                // in 30 mins
+                newSession.setMaxInactiveInterval(30 * 60);
+            
+            // create cookies
+            /*
+            Cookie cookie = new Cookie("token", "Bearer " + "Welcome");
+            cookie.setSecure(true);
+            cookie.setHttpOnly(true);
+            
+            response.addCookie(cookie);
+            */
+            if ("stagiaire".equals(utilisateur.getRole()))
+                response.sendRedirect(request.getContextPath() + "/stagiaire/index.jsp");
+            else
+               response.sendRedirect(request.getContextPath() + "/admin/index.jsp");
+            
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login_error.html");
         }
     }
 

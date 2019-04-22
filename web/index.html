@@ -6,37 +6,36 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Evaluation des stagiaires</title>
+        <title>Application SR03 d'Evaluation des Stagiares - Authentification</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="static/style.css"/>
     </head>
     <body>
-        <div>
-            <div>
-                <ul>
-                    <li><a class="active" href="/Projet_SR03/index.html">Accueil</a></li>
-                    <li><a href="/Projet_SR03/ajout_utilisateur.html">Ajouter un Utilisateur</a></li>
-                    <li><a href="/Projet_SR03/ajout_competence.html">Ajouter une Compétence</a></li>
-                    <li><a href="/Projet_SR03/ajout_questionnaire.jsp">Ajouter un Questionnaire</a></li>
-                    <li><a href="/Projet_SR03/ajout_question.jsp">Ajouter une Question</a></li>
-                    <li><a href="/Projet_SR03/ajout_reponse.jsp">Ajouter une Réponse</a></li>
-                    <li><a href="/Projet_SR03/utilisateurs.jsp">Liste des Utilisateurs</a></li>
-                    <li><a href="/Projet_SR03/competences.jsp">Liste des Compétences</a></li>
-                    <li><a href="/Projet_SR03/questionnaires.jsp">Liste des Questionnaires</a></li>
-                    <li><a href="/Projet_SR03/questions.jsp">Liste des Questions</a></li>
-                    <li><a href="/Projet_SR03/reponses.jsp">Liste des Réponses</a></li>
-                    <li><a href="/Projet_SR03/parcours.jsp">Liste des Parcours</a></li>
-                </ul>
-            </div>
-            <div class="container" style="margin-left:25%;padding:1px 16px;height:1000px;">
-                <h2>Bienvenu.e !</h2>
-                <h3>Fonctionnalités de l'application :</h3>
-                <p>Gestion des utilisateurs </p>
-                <p>Gestion des questionnaires</p>
-                <p>Gestion des résultats</p>
-                <p>Evaluation des compétences.</p>
-            </div>
+        <div style="display:flex;">
+            <form style="margin:auto;" action="login" method="POST">
+                <div class="container" >
+                    <b>Application SR03 d'Evaluation des Stagiares</b>
+                    <br/>
+                    <br/>
+                    <label for="email"><b>Email</b>
+                        <input type="email" placeholder="Entrez votre email" name="email" required>
+                    </label>
+
+                    <label for="pwd"><b>Mot de passe</b>
+                        <input type="password" placeholder="Entrez votre mot de passe" name="pwd" required>
+                    </label>
+
+                    <input type="reset" class="cancelbtn" value="Annuler">
+                    <button type="submit" class="signupbtn">Se connecter</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
+                    </label>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                    <span class="psw"><a href="#">Mot de passe oublié ?</a></span>
+                </div>
+            </form>
         </div>
     </body>
 </html>

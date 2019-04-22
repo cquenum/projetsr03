@@ -60,65 +60,98 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.mutamba.controller.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PwdOublieServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.PwdOublieServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreerParcoursServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.CreerParcoursServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UtilisateurServlet</servlet-name>
-        <url-pattern>/utilisateurs</url-pattern>
+        <url-pattern>/admin/utilisateurs</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuestionServlet</servlet-name>
-        <url-pattern>/questions</url-pattern>
+        <url-pattern>/admin/questions</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ReponseServlet</servlet-name>
-        <url-pattern>/reponses</url-pattern>
+        <url-pattern>/admin/reponses</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuestionnaireServlet</servlet-name>
-        <url-pattern>/questionnaires</url-pattern>
+        <url-pattern>/admin/questionnaires</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ParcoursServlet</servlet-name>
-        <url-pattern>/parcours</url-pattern>
+        <url-pattern>/stagiaire/parcours</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SupprUtilisateurServlet</servlet-name>
-        <url-pattern>/suppr_utilisateur</url-pattern>
+        <url-pattern>/admin/suppr_utilisateur</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UtilisateurModifServlet</servlet-name>
-        <url-pattern>/modif_utilisateur</url-pattern>
+        <url-pattern>/admin/modif_utilisateur</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CompetenceServlet</servlet-name>
-        <url-pattern>/competences</url-pattern>
+        <url-pattern>/admin/competences</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CompetenceModifServlet</servlet-name>
-        <url-pattern>/modif_competence</url-pattern>
+        <url-pattern>/admin/modif_competence</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CompetenceSupprServlet</servlet-name>
-        <url-pattern>/suppr_competence</url-pattern>
+        <url-pattern>/admin/suppr_competence</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuestionnaireModifServlet</servlet-name>
-        <url-pattern>/modif_questionnaire</url-pattern>
+        <url-pattern>/admin/modif_questionnaire</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuestionnaireSupprServlet</servlet-name>
-        <url-pattern>/suppr_questionnaire</url-pattern>
+        <url-pattern>/admin/suppr_questionnaire</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuestionModifServlet</servlet-name>
-        <url-pattern>/modif_question</url-pattern>
+        <url-pattern>/admin/modif_question</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuestionSupprServlet</servlet-name>
-        <url-pattern>/suppr_question</url-pattern>
+        <url-pattern>/admin/suppr_question</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.mutamba.controller.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/stagiaire/*</url-pattern>
+    </filter-mapping>
+    <servlet-mapping>
+        <servlet-name>PwdOublieServlet</servlet-name>
+        <url-pattern>/motdepasseoublie</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreerParcoursServlet</servlet-name>
+        <url-pattern>/stagiaire/creer_parcours</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
