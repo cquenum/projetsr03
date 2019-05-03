@@ -30,14 +30,13 @@
                     <tr>
                         <th>Sujet</th>
                         <th></th>
-                        <th></th>
                     </tr>
                     <% for (int i = 0; i < competences.size(); i++) {%>
                     <tr>
                         <td><%=competences.get(i).getSujet() %></td>
                         
-                        <td><a href="<%= request.getContextPath()%>/admin/suppr_competence?id=<%=competences.get(i).getId()%>">Supprimer</a></td>
-                        <td><a href="<%= request.getContextPath()%>/admin/modif_competence.jsp?id=<%=competences.get(i).getId()%>">Modifier</a></td>
+                        <td><a href="<%= request.getContextPath()%>/admin/suppr_competence?id=<%=competences.get(i).getId()%>">Supprimer</a>
+                        <br/><a href="<%= request.getContextPath()%>/admin/modif_competence.jsp?id=<%=competences.get(i).getId()%>">Modifier</a></td>
                     </tr>
                         <% }%>
                 </table>

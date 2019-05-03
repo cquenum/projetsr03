@@ -29,7 +29,7 @@
                 <table>
                     <tr>
                         <th>Sujet</th>
-                        <th>Question</th>
+                        <th>Questionnaires</th>
                         <th>Statut</th>
                         <th></th>
                         <th></th>

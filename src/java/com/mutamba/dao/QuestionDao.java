@@ -61,21 +61,11 @@ public class QuestionDao extends Dao<Question> {
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_UPDATABLE)
                     .executeQuery(
-                            "SELECT * FROM question"
+                            "SELECT id FROM question"
                     );
 
             while (result.next()) {
-                question = new Question(
-                        result.getString("valeur")
-                );
-                question.setId(result.getInt("id"));
-                question.setStatut(result.getBoolean("statut"));
-                question.setQuestionnaire(
-                        new QuestionnaireDao()
-                                .find(
-                                        result.getInt("id_questionnaire")
-                                )
-                );
+                question = this.find(result.getInt("id"));
                 questions.put(questions.size(), question);
             }
         } catch (SQLException e) {

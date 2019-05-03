@@ -54,7 +54,7 @@ public class ReponseServlet extends HttpServlet {
                 reponse.setStatut(false);
             }
             reponse.setBonne(false);
-            if (statut == null || statut.length == 0) {
+            if (bonne != null && bonne.length != 0) {
                 reponse.setBonne(true);
             }
 

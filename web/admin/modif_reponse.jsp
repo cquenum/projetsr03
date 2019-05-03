@@ -68,7 +68,7 @@
                         <% }%>
                     </label>
                     <label>
-                        <% if (reponse.estBonne()) { %>
+                        <% if (reponse.isBonne()) { %>
                         <input type="checkbox" checked="checked" name="bonne" style="margin-bottom:15px"> <b>Est bonne</b>
                         <% } else {
                         %>

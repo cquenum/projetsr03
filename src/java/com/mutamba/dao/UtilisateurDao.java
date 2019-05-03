@@ -159,21 +159,11 @@ public class UtilisateurDao extends Dao<Utilisateur> {
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_UPDATABLE)
                     .executeQuery(
-                            "SELECT * FROM utilisateur "
+                            "SELECT id FROM utilisateur "
                     );
 
             while (result.next()) {
-                utilisateur = new Utilisateur(
-                        result.getString("nom"),
-                        result.getString("prenom"),
-                        result.getString("email"),
-                        result.getString("pwd"),
-                        result.getString("role")
-                );
-                utilisateur.setId(result.getInt("id"));
-                utilisateur.setDateCreation(result.getTimestamp("dateCreation").toLocalDateTime());
-                utilisateur.setTelephone(result.getString("telephone"));
-                utilisateur.setStatut(result.getBoolean("statut"));
+                utilisateur = this.find(result.getInt("id"));
 
                 utilisateursTable.put(utilisateursTable.size(), utilisateur);
             }

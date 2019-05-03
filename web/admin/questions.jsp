@@ -31,7 +31,6 @@
                         <th>Question</th>
                         <th>Statut</th>
                         <th></th>
-                        <th></th>
                     </tr>
                     <% for (int i = 0; i < questions.size(); i++) {%>
                     <tr>
@@ -43,8 +42,8 @@
                         %>
                         <td>Inactif</td>
                         <% }%>
-                        <td><a href="<%= request.getContextPath()%>/admin/suppr_question?id=<%=questions.get(i).getId()%>">Supprimer</a></td>
-                        <td><a href="<%= request.getContextPath()%>/admin/modif_question.jsp?id=<%=questions.get(i).getId()%>">Modifier</a></td>
+                        <td><a href="<%= request.getContextPath()%>/admin/suppr_question?id=<%=questions.get(i).getId()%>">Supprimer</a>
+                        <br/><a href="<%= request.getContextPath()%>/admin/modif_question.jsp?id=<%=questions.get(i).getId()%>">Modifier</a></td>
                     </tr>
                         <% }%>
                 </table>

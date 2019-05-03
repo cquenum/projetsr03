@@ -33,7 +33,6 @@
                         <th>Statut</th>
                         <th>Bonne réponse</th>
                         <th></th>
-                        <th></th>
                     </tr>
                     <% for (int i = 0; i < reponse.size(); i++) {%>
                     <tr>
@@ -45,16 +44,15 @@
                         <% } else {
                         %>
                         <td>Inactif</td>
-                        <% }%>
-                        
-                        <% if (reponse.get(i).estBonne()) { %>
+                        <% }
+                        if (reponse.get(i).isBonne()) { %>
                         <td>Oui</td>
                         <% } else {
                         %>
                         <td>Non</td>
                         <% }%>
-                        <td><a href="<%= request.getContextPath()%>/admin/suppr_reponse?id=<%=reponse.get(i).getId()%>">Supprimer</a></td>
-                        <td><a href="<%= request.getContextPath()%>/admin/modif_reponse.jsp?id=<%=reponse.get(i).getId()%>">Modifier</a></td>
+                        <td><a href="<%= request.getContextPath()%>/admin/suppr_reponse?id=<%=reponse.get(i).getId()%>">Supprimer</a><br/>
+                        <a href="<%= request.getContextPath()%>/admin/modif_reponse.jsp?id=<%=reponse.get(i).getId()%>">Modifier</a></td>
                     </tr>
                         <% }%>
                 </table>

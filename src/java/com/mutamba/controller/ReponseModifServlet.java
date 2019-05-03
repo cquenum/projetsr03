@@ -6,11 +6,11 @@
 package com.mutamba.controller;
 
 import com.mutamba.dao.QuestionDao;
-import com.mutamba.dao.QuestionnaireDao;
 import com.mutamba.dao.ReponseDao;
 import com.mutamba.model.Question;
 import com.mutamba.model.Reponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cquenum
  */
-public class QuestionServlet extends HttpServlet {
+public class ReponseModifServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,63 +33,35 @@ public class QuestionServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        QuestionDao dao = new QuestionDao();
-        Question question = new Question();
 
-        String sid_competence = request.getParameter("questionnaires");
-        String valeur = request.getParameter("question");
-        String[] statut = request.getParameterValues("statut");
-        
-        String[] params = {"reponse1", "reponse2", "reponse3", "reponse4"};
+        String sid = request.getParameter("id");
+        int id;
 
-        String[] valeursReponse = new String[params.length];;
-        boolean reponseStatut = true;
-        int bonneReponse = Integer.parseInt(request.getParameter("bonne")) ;
-        
-        int j = 0;
-        for (String param : params){
-            valeursReponse[j] = request.getParameter(param);
-            j++;
-        }
-
-        try {
-            int id_competence = Integer.parseInt(sid_competence);
-            question.setQuestionnaire(
-                    new QuestionnaireDao()
-                            .find(id_competence)
-            );
-
-            question.setValeur(valeur);
-
-            question.setStatut(true);
-            
-            if (statut == null || statut.length == 0) {
-                question.setStatut(false);
-                reponseStatut = false;
-            }
-            
-            question = dao.create(question);
-            
-            
-            for (int i=0; i<valeursReponse.length; i++) {
-                Reponse reponse = new Reponse(valeursReponse[i]);
-                reponse.setQuestion(question);
-                reponse.setStatut(reponseStatut);
-                
-                if (i == bonneReponse - 1)
-                    reponse.setBonne(true);
-                else
-                    reponse.setBonne(false);
-                
-                reponse = new ReponseDao().create(reponse);
-            }
-            
-            response.sendRedirect(request.getContextPath() + "/admin/succes.html");
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (sid.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/admin/error.html");
+        } else {
+            try {
+                id = Integer.parseInt(sid);
+
+                ReponseDao dao = new ReponseDao();
+                Reponse reponse = dao.find(id);
+
+                Question question = new QuestionDao().find(Integer.parseInt(request.getParameter("question")));
+                reponse.setQuestion(question);
+                
+                String[] statut = request.getParameterValues("statut");
+                if (statut.length == 0)
+                    reponse.setStatut(false);
+                else
+                    reponse.setStatut(true);
+                
+                dao.update(reponse);
+                response.sendRedirect(request.getContextPath() + "/admin/succes.html");
+                
+            } catch (Exception e) {
+                response.sendRedirect(request.getContextPath() + "/admin/error.html");
+            }
+
         }
     }
 

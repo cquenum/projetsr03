@@ -30,15 +30,10 @@
             <p>Veuillez remplir le formulaire pour créer un nouveau questionnaire</p>
             <form action="<%= request.getContextPath() %>/admin/questionnaires" method="POST">
                 <div class="container">
-                    <label for="competences"><b>Competence: </b>
-                        <select name="competences">
-                            <% Hashtable<Integer, Competence> competences = new CompetenceDao().find();
+                    <% Hashtable<Integer, Competence> competences = new CompetenceDao().find();
                                 for (int i = 0; i < competences.size(); i++) {%>
-                            <option value="<%= competences.get(i).getId()%>"><%= competences.get(i).getSujet()%></option>
-                            <%
-                                }%>
-                        </select>
-                    </label>
+                    <input type="radio" name="reponse" value="<%= competences.get(i).getId()%>" style="margin-bottom:15px" required> <%= competences.get(i).getSujet()%>
+                    
                     <br/>
                     <br/>
                     <label for="questionnaire"><b>Questionnaire</b>

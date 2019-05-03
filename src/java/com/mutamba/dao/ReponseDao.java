@@ -37,6 +37,7 @@ public class ReponseDao extends Dao<Reponse>{
 
                 reponse.setId(result.getInt("id"));
                 reponse.setStatut(result.getBoolean("statut"));
+                reponse.setBonne(result.getBoolean("bonne"));
                 reponse.setQuestion(
                         new QuestionDao()
                                 .find(
@@ -61,21 +62,11 @@ public class ReponseDao extends Dao<Reponse>{
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_UPDATABLE)
                     .executeQuery(
-                            "SELECT * FROM reponse"
+                            "SELECT id FROM reponse"
                     );
 
             while (result.next()) {
-                reponse = new Reponse(
-                        result.getString("valeur")
-                );
-                reponse.setId(result.getInt("id"));
-                reponse.setStatut(result.getBoolean("statut"));
-                reponse.setQuestion(
-                        new QuestionDao()
-                                .find(
-                                        result.getInt("id_question")
-                                )
-                );
+                reponse = this.find(result.getInt("id"));
                 reponses.put(reponses.size(), reponse);
             }
         } catch (SQLException e) {
@@ -90,12 +81,13 @@ public class ReponseDao extends Dao<Reponse>{
         try {
             PreparedStatement prepare = this.connect
                     .prepareStatement(
-                            "INSERT INTO reponse (valeur, statut, id_question) "
-                            + "VALUES (?, ?, ?)");
+                            "INSERT INTO reponse (valeur, statut, id_question, bonne) "
+                            + "VALUES (?, ?, ?, ?)");
 
             prepare.setString(1, obj.getValeur());
             prepare.setBoolean(2, obj.getStatut());
             prepare.setInt(3, obj.getQuestion().getId());
+            prepare.setBoolean(2, obj.isBonne());
 
             prepare.executeUpdate();
 
@@ -123,14 +115,16 @@ public class ReponseDao extends Dao<Reponse>{
                     .prepareStatement(
                             "UPDATE reponse SET valeur = ?, "
                             + "statut = ?, "
-                            + "id_question = ? "
+                            + "id_question = ?,"
+                            + "bonne = ?"
                             + "WHERE id = ?"
                     );
 
             prepare.setString(1, obj.getValeur());
             prepare.setBoolean(2, obj.getStatut());
             prepare.setInt(3, obj.getQuestion().getId());
-            prepare.setInt(4, obj.getId());
+            prepare.setBoolean(4, obj.isBonne());
+            prepare.setInt(5, obj.getId());
 
             obj = this.find(obj.getId());
 

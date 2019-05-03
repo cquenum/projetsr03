@@ -57,7 +57,7 @@ public class Parcours {
         this.score = 0;
         if (this.reponses != null)
             for (int i = 0; i < this.reponses.size(); i++)
-                if (this.reponses.get(i).estBonne())
+                if (this.reponses.get(i).isBonne())
                     this.score += 1;
     }
     

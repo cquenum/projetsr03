@@ -13,6 +13,10 @@
         <servlet-class>com.mutamba.controller.ReponseServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ReponseModifServlet</servlet-name>
+        <servlet-class>com.mutamba.controller.ReponseModifServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>QuestionnaireServlet</servlet-name>
         <servlet-class>com.mutamba.controller.QuestionnaireServlet</servlet-class>
     </servlet>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>ReponseServlet</servlet-name>
         <url-pattern>/admin/reponses</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReponseModifServlet</servlet-name>
+        <url-pattern>/admin/modif_reponse</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>QuestionnaireServlet</servlet-name>

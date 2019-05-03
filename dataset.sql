@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS utilisateur (
 		PRIMARY KEY (id)
 );
 
+INSERT INTO `utilisateur` (`prenom`,`nom`,`email`,`pwd`,`statut`,`telephone`,`dateCreation`,`role`) VALUES ("Admin","Admin","admi@admin.com","admin1234",1,"04 98 52 16 84","2018-09-21 21:10:47","administrateur"),("Test","Test","test@test.com","test1234",1,"08 65 33 00 89","2018-09-21 09:50:51","stagiaire"),("Stagiare","Stagiare","stagiare@stagiare.com","stagiare1234",1,"08 65 33 00 89","2018-09-21 09:50:51","stagiaire")
 INSERT INTO `utilisateur` (`prenom`,`nom`,`email`,`pwd`,`statut`,`telephone`,`dateCreation`,`role`) VALUES ("Stephanie","Strong","felis.Nulla.tempor@inmolestietortor.net","QDV35UJN0TJ",1,"04 98 52 16 84","2018-09-21 21:10:47","administrateur"),("Aretha","Stafford","eros@Nullam.org","LLN47VDA9AE",0,"08 65 33 00 89","2018-09-21 09:50:51","stagiaire"),("William","Leach","non.sapien.molestie@leoinlobortis.net","GVB13VZA0RN",1,"08 04 07 49 41","2018-06-12 02:41:03","stagiaire"),("Adrienne","Mullen","Morbi.metus.Vivamus@molestie.ca","WOU50LJI8BY",0,"02 87 30 86 80","2019-07-05 02:58:29","stagiaire"),("Amery","Randolph","malesuada.Integer@etmagnisdis.ca","UXL40ZIT5LK",1,"09 42 77 27 69","2018-05-14 13:43:03","stagiaire"),("Rylee","Craft","ornare.tortor.at@necquam.co.uk","FQP76OZP5TP",0,"09 52 76 80 30","2019-10-30 23:01:11","stagiaire"),("Kristen","Gonzalez","eu.arcu@elitpellentesquea.ca","UZN79SDF2XB",0,"07 90 94 39 68","2019-11-12 00:14:02","administrateur"),("Keith","Bird","magna.malesuada.vel@egetmagna.net","GLB51PBJ1WX",1,"02 85 29 00 28","2019-03-05 13:59:49","administrateur"),("Wynne","Hill","cursus.non@tortorNunccommodo.net","OQX03XYR8WQ",1,"03 57 89 96 92","2019-03-28 06:38:02","stagiaire"),("Iona","Valenzuela","eleifend.Cras@semutdolor.net","PNI61DOC6ZS",0,"06 08 23 97 52","2018-07-14 13:57:21","administrateur");
 INSERT INTO `utilisateur` (`prenom`,`nom`,`email`,`pwd`,`statut`,`telephone`,`dateCreation`,`role`) VALUES ("Velma","Chapman","ligula.elit@magnaDuis.co.uk","SRL31PJA9YG",0,"08 44 76 62 69","2018-10-28 20:44:27","administrateur"),("Jaden","Mosley","mi.Aliquam@loremvitae.org","SOY82MHX7IB",1,"05 82 18 57 91","2019-06-14 02:25:54","administrateur"),("Hakeem","Head","egestas.a.scelerisque@lectus.net","TOP70CQB8CO",0,"03 51 69 79 81","2019-03-24 01:07:59","stagiaire"),("Silas","Graham","metus.In.lorem@dolorvitaedolor.com","CPE64LRP6EL",0,"02 06 92 37 54","2018-10-05 20:33:21","administrateur"),("Quin","Sutton","cursus@nascetur.ca","MSB66RXV9VO",0,"08 20 43 90 91","2019-12-07 10:39:08","administrateur"),("Clark","Ingram","cursus@CuraePhasellusornare.org","FPF27PHM2FY",0,"03 89 38 09 96","2020-02-17 19:10:59","stagiaire"),("Kyra","Forbes","mollis.Phasellus@Donecat.net","RYC40WVI8EN",0,"01 45 72 64 01","2019-04-04 04:13:06","stagiaire"),("Armando","Vincent","Cras@sagittisaugue.ca","BLS41RUO6GL",1,"09 11 32 31 46","2020-03-14 07:25:49","administrateur"),("Anjolie","Mcbride","elementum.at.egestas@semegestasblandit.com","AAO31EKJ3FL",0,"02 18 62 38 10","2018-09-17 08:10:29","administrateur"),("Jack","Willis","sagittis@seddolor.ca","RBL31XDK2JI",1,"01 36 49 62 38","2020-02-07 09:44:12","administrateur");
 INSERT INTO `utilisateur` (`prenom`,`nom`,`email`,`pwd`,`statut`,`telephone`,`dateCreation`,`role`) VALUES ("Deborah","Watts","dolor.Fusce@estmollisnon.edu","MPH10SJX1KG",1,"05 80 95 91 94","2019-03-24 23:31:32","stagiaire"),("Jolie","White","dui.Cum.sociis@ut.ca","RUI31BPN3HI",1,"05 40 48 97 99","2019-06-03 08:30:09","stagiaire"),("Buffy","Holman","Vivamus.euismod.urna@diamdictum.net","PCB93YFT4FX",0,"05 33 45 59 51","2019-01-20 19:26:45","administrateur"),("Dalton","Hale","egestas.Aliquam.nec@nectellusNunc.ca","YLN29BEC5EU",0,"06 99 57 42 05","2018-09-25 12:23:20","administrateur"),("Unity","Avila","neque.venenatis.lacus@quisaccumsan.edu","WBT29HUE3WS",0,"04 20 72 46 38","2020-01-21 04:16:19","stagiaire"),("Alea","Fisher","massa.rutrum.magna@pharetrasedhendrerit.org","XQB22CJA0UI",1,"06 50 01 22 36","2020-03-29 01:44:37","administrateur"),("Sigourney","Gallegos","vel.arcu.Curabitur@augueut.com","ZGN26AFP1DO",1,"02 89 97 23 99","2018-10-06 02:22:22","administrateur"),("Dylan","Ward","viverra@pedeetrisus.net","IZE23DYT0MP",1,"05 24 30 21 08","2019-01-17 02:22:57","administrateur"),("Mary","Campbell","risus.Nulla.eget@montes.org","CWI29QHG8LF",0,"05 69 32 19 79","2019-04-26 16:05:52","administrateur"),("Gloria","Ruiz","vitae@id.com","LXQ40QVV1GF",1,"07 45 11 16 81","2020-01-25 06:34:33","stagiaire");
@@ -43,8 +44,171 @@ CREATE TABLE IF NOT EXISTS competence (
 		sujet VARCHAR(255) UNIQUE NOT NULL,
 		PRIMARY KEY (id)
 );
-
-INSERT INTO competence (sujet) VALUES ("AMAZON AWS"),("ANDROID"),("APACHE"),("API"),("AS400"), ("BI"), ("BIG DATA"), ("C"), ("Cloud AWS"), ("DATASTAGE"), ("JAVA");
-INSERT INTO competence (sujet) VALUES ("ORACLE"),("MS-DOS"),("LINUX"),("MAC OS"),("LAMP"), ("Kubernetes"), ("JUNIPER"), ("JQUERY"), ("JMS"), ("JAVASCRIPT"), ("JBOSS");
+INSERT INTO `competence` (`sujet`) VALUES ('HTML'),('JSP'),('MySQL'),('Tomcat'),('Weblogic'),('WebSphere'),('LINUX'),('PHP');
+INSERT INTO `competence` (`sujet`) VALUES ("AMAZON AWS"),("ANDROID"),("APACHE"),("API"),("AS400"), ("BI"), ("BIG DATA"), ("C"), ("Cloud AWS"), ("DATASTAGE"), ("JAVA");
+INSERT INTO `competence` (`sujet`) VALUES ("ORACLE"),("MS-DOS"),("MAC OS"),("LAMP"), ("Kubernetes"), ("JUNIPER"), ("JQUERY"), ("JMS"), ("JAVASCRIPT"), ("JBOSS");
 
 -- questionnaire
+DROP TABLE `questionnaire`;
+
+CREATE TABLE IF NOT EXISTS questionnaire (
+		id INT AUTO_INCREMENT,
+		valeur VARCHAR(255) UNIQUE NOT NULL,
+		statut BOOLEAN,
+		id_competence int,
+		FOREIGN KEY (id_competence) REFERENCES competence (id),
+		PRIMARY KEY (id)
+);
+
+-- question
+DROP TABLE `question`;
+
+CREATE TABLE IF NOT EXISTS question (
+		id INT AUTO_INCREMENT,
+		valeur VARCHAR(255) NOT NULL,
+		statut BOOLEAN,
+		id_questionnaire int,
+		FOREIGN KEY (id_questionnaire) REFERENCES questionnaire (id),
+		PRIMARY KEY (id)
+);
+
+-- reponse
+DROP TABLE `reponse`;
+
+CREATE TABLE IF NOT EXISTS reponse (
+		id INT AUTO_INCREMENT,
+		valeur VARCHAR(255) NOT NULL,
+		statut BOOLEAN,
+		bonne BOOLEAN,
+		id_question int,
+		FOREIGN KEY (id_question) REFERENCES question (id),
+		PRIMARY KEY (id)
+);
+
+-- Data
+
+-- QCM HTML
+INSERT INTO `questionnaire` (`valeur`, `statut`, `id_competence`) VALUES ("QCM HTML",1,1);
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Que signifie HTML?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Hyper Technology Mixed Language",1,0,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("HyperText Markup Language",1,1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Hot Text Mapping Language",1,0,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Je ne sais pas",1,0,1);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Quand le langage HTML a-t-il été créé ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("1970",1,0,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("1986",1,0,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("1990",1,1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("2000",1,0,2);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Qui est l'inventeur du langage HTML ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Bill Gates",1,0,3);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Tim Berners-Lee",1,1,3);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Emmanuel Gérard",1,0,3);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Emmanuel Macron",1,0,3);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Avec quelles balises pouvez changer le texte en gras ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("<br></br>",1,0,4);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("<b></b>",1,1,4);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("<p></p>",1,0,4);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("<gras></gras>",1,0,4);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Si j'utilise la balise <blink> que va-t-il se passer ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("le texte sera rayé",1,0,5);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("le texte sera en surbrillance",1,0,5);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("le texte clignotera",1,1,5);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("le texte sera invisible",1,0,5);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Si je tape &eacute;, quelle lettre vais-je obtenir ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("è",1,0,6);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("é",1,1,6);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("ê",1,0,6);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("e",1,0,6);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Quel est le code hexadécimal de la couleur rouge ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("#00FF00",1,0,7);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("#0000FF",1,0,7);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("#FF0000",1,1,7);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("#000000",1,0,7);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Comment puis-je transformer une image en zône cliquable ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("<A HREF="adresse"><IMG SRC="..."></A>",1,1,8);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("<A HREF="adresse" IMG SRC="..."></A>",1,0,8);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("<A HREF= IMG SRC="..."></A>",1,0,8);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("<IMG SRC="..."></IMG>",1,0,8);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("A quoi sert l'option VLINK dans la balise BODY ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("à positionner la couleur d'un lien qui n'a pas encore été visité",1,0,9);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("à positionner la couleur d'un lien au moment où l'on clique dessus",1,0,9);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("à positionner la couleur d'un lien qui a déjà été visité",1,1,9);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Je ne sais pas",1,1,9);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Quelle est la couleur par défaut de l'option ALINK dans la balise BODY ?",1,1);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("rouge",1,0,10);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("violet",1,0,10);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("bleu",1,1,10);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("noire",1,0,10);
+
+-- QCM Java – Programmation Orientée Objet
+INSERT INTO `questionnaire` (`valeur`, `statut`, `id_competence`) VALUES ("QCM Java – Programmation Orientée Objet",1,19);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Lequel des éléments suivants n’est pas un concept POO en Java?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Héritage",1,0,11);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Encapsulation",1,0,11);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Polymorphisme",1,0,11);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Compilation",1,1,11);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Quand la surcharge de méthode est-elle déterminée?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Au moment de l’exécution",1,0,12);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Au moment de la compilation",1,0,12);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Au moment du codage",1,1,12);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Au moment de l’exécution",1,0,12);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Quand la surcharge ne se produit pas?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Quand il y a plusieurs méthodes avec le même nom mais avec une signature de méthode différente et un nombre ou un type de paramètres différent",1,0,13);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Quand il y a plusieurs méthodes avec le même nom, le même nombre de paramètres et le type mais une signature différente",1,1,13);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Quand il y a plusieurs méthodes avec le même nom, la même signature, le même nombre de paramètres mais un type différent",1,0,13);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Quand il y a plusieurs méthodes avec le même nom, la même signature mais avec différente signature",1,0,13);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Quel concept de Java est un moyen de convertir des objets du monde réel en termes de classe?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Polymorphisme",1,0,14);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Encapsulation",1,0,14);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Abstraction",1,1,14);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Héritage",1,0,14);
+
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Quel concept de Java est utilisé en combinant des méthodes et des attributs dans une classe?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Agrégation",1,0,15);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Composition",1,1,15);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Encapsulation",1,0,15);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Association",1,0,15);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Comment ça s’appelle si un objet a son propre cycle de vie?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Agrégation",1,0,16);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Composition",1,0,16);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Encapsulation",0,1,16);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Association",1,1,16);
+
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Comment s’appelle-t-on dans le cas où l’objet d’une classe mère est détruit donc l’objet d’une classe fille sera détruit également?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Agrégation",1,0,17);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Composition",1,1,17);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Encapsulation",0,1,17);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Association",1,0,17);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Comment s’appelle-t-on l’objet a son propre cycle de vie et l’objet d’une classe fille ne dépend pas à un autre objet d’une classe mère?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Agrégation",1,1,18);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Composition",1,0,18);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Encapsulation",1,0,18);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Association",1,0,18);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("La surcharge d’une méthode peut remplacer l’héritage et le polymorphisme?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Vrai",1,1,19);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Faux",1,0,19);
+
+INSERT INTO `question` (`valeur`, `statut`, `id_questionnaire`) VALUES ("Quels keywords sont utilisés pour spécifier la visibilité des propriétés et des méthodes ?",1,2);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("final",1,0,20);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("Composition",1,0,20);
+INSERT INTO `reponse` (`valeur`, `statut`, bonne, `id_question`) VALUES ("private",1,1,20);
+
+

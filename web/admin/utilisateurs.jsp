@@ -37,7 +37,6 @@
                         <th>Date création</th>
                         <th>Status</th>
                         <th></th>
-                        <th></th>
                     </tr>
                     <% for (int i = 0; i < utilisateurs.size(); i++) {%>
                     <tr>
@@ -53,8 +52,8 @@
                         %>
                         <td>Inactif</td>
                         <% }%>
-                        <td><a href="<%= request.getContextPath()%>/admin/suppr_utilisateur?id=<%=utilisateurs.get(i).getId()%>">Supprimer</a></td>
-                        <td><a href="<%= request.getContextPath()%>/admin/modif_utilisateur.jsp?id=<%=utilisateurs.get(i).getId()%>">Modifier</a></td>
+                        <td><a href="<%= request.getContextPath()%>/admin/suppr_utilisateur?id=<%=utilisateurs.get(i).getId()%>">Supprimer</a><br/>
+                        <a href="<%= request.getContextPath()%>/admin/modif_utilisateur.jsp?id=<%=utilisateurs.get(i).getId()%>">Modifier</a></td>
                     </tr>
                         <% }%>
                 </table>
