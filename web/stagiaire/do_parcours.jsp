@@ -37,22 +37,29 @@
     } catch (Exception e) {
         e.printStackTrace();
     }
-    
+
     Hashtable<Integer, Reponse> reponsesPrecedantes = parcours.getReponses();
     Hashtable<Integer, Question> questions = new QuestionDao().find(parcours.getQuestionnaire());
-    
-    for (int i=0; i<reponsesPrecedantes.size(); i++){
-       Question quest = reponsesPrecedantes.get(i).getQuestion();
-       for (int j=0; j<questions.size(); j++){
-           if (quest.equals(questions.get(j))) {
-               questions.remove(j);
-           }
-       }
-    }
-    
     Question nouvelleQuestion = new Question();
-    if(!questions.isEmpty())
-        nouvelleQuestion = questions.elements().nextElement();
+    
+    for (int j = 0; j < questions.size(); j++) {
+        boolean questionDejaPose = false;
+        
+        for (int i = 0; i < reponsesPrecedantes.size(); i++) {
+            Question quest = reponsesPrecedantes.get(i).getQuestion();
+            
+            if (questions.get(j).equals(quest)) {
+                questionDejaPose = true;
+                break;
+            }
+        }
+        
+        if(!questionDejaPose){
+            nouvelleQuestion = questions.get(j);
+            break;
+        }
+    }
+
 %>
 
 <!DOCTYPE html>
@@ -88,19 +95,19 @@
         <%@include file="menu.jsp" %>
         <div class="container" style="margin-left:25%;padding:1px 16px;height:1000px;">
             <% if (nouvelleQuestion == null) {%>
-                <br/>
-                <h2>Vous avez terminé le Parcours</h2>
-                <p>
-                    Vous pouvez consultre en cliquant <a href="<%= request.getContextPath()%>/stagiaire/reponses.jsp?id=<%=parcours.getId()%>">ici</a>
-                </p>
-                <% } else { %>
-             <h1>Choisissez une réponse:</h1>
+            <br/>
+            <h2>Vous avez terminé le Parcours</h2>
+            <p>
+                Vous pouvez consultre en cliquant <a href="<%= request.getContextPath()%>/stagiaire/reponses.jsp?id=<%=parcours.getId()%>">ici</a>
+            </p>
+            <% } else {%>
+            <h1>Choisissez une réponse:</h1>
             <form action="<%= request.getContextPath()%>/stagiaire/parcours" method="POST">
                 <div>
-                <input type="hidden" name="id_parcours" value="<%= parcours.getId()%>">
-                <input type="hidden" name="duree" id="duree">
+                    <input type="hidden" name="id_parcours" value="<%= parcours.getId()%>">
+                    <input type="hidden" name="duree" id="duree">
                     <strong>Durée: </strong> <label id="minutes">00</label>:<label id="seconds">00</label>
-                    
+
                     <h2><%= nouvelleQuestion.getValeur()%>:</h2>
                     <% Hashtable<Integer, Reponse> reponses = new ReponseDao().find(nouvelleQuestion);
                         for (int j = 0; j < reponses.size(); j++) {
@@ -113,7 +120,7 @@
                     <button type="submit" class="signupbtn">Suivant</button>
                 </div>
             </form>
-                <%}%>
+            <%}%>
         </div>
     </body>
 </html>

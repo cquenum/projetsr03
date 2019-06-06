@@ -39,7 +39,7 @@
     } catch (Exception e) {
         e.printStackTrace();
     }
-    
+
     Hashtable<Integer, Reponse> reponses = parcours.getReponses();
 %>
 
@@ -57,7 +57,7 @@
         <div>
             <div class="container" style="margin-left:25%;padding:1px 16px;height:1000px;">
 
-                <h2>Liste des vos Parcours</h2>
+                <h2>Liste des vos Réponses</h2>
                 <% if ((reponses == null) || (reponses.isEmpty())) {%>
                 <br/>
                 <br/>
@@ -68,15 +68,19 @@
                 <% } else { %>
                 <table>
                     <tr>
-                        <th>Question</th>
+                        <th>Questions</th>
                         <th>Votre réponses</th>
-                        <th></th>
+                        <th>Réponse correcte ?</th>
                     </tr>
                     <% for (int i = 0; i < reponses.size(); i++) {%>
                     <tr>
                         <td><%=reponses.get(i).getQuestion().getValeur()%></td>
                         <td><%=reponses.get(i).getValeur()%></td>
-                        <td><%=reponses.get(i).isBonne()%></td>
+                        <%if (reponses.get(i).isBonne()) {%>
+                        <td>Oui</td>
+                        <%} else { %>
+                        <td>Non</td>
+                        <% } %>
                     </tr>
                     <% }%>
                 </table>
