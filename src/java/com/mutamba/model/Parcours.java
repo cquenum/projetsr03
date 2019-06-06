@@ -26,6 +26,7 @@ public class Parcours {
     public Parcours(Utilisateur stagiaire, Questionnaire questionnaire){
         this.stagiaire = stagiaire;
         this.questionnaire = questionnaire;
+        this.reponses = new Hashtable<>();
     }
     
     public int getId(){
@@ -88,10 +89,11 @@ public class Parcours {
     @Override
     public String toString(){
         String s_reponses = "[";
+        if (reponses != null)
+            for (int i = 0; i < this.reponses.size(); i++){
+                s_reponses += this.reponses.get(i).toString() + " ,";
+            }
         
-        for (int i = 0; i < this.reponses.size(); i++){
-            s_reponses += this.reponses.get(i).toString() + " ,";
-        }
         s_reponses = s_reponses.replaceAll(",$", "");
         
         s_reponses += "]";

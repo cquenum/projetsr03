@@ -30,7 +30,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/static/style.css"/>
-        <script src="<%= request.getContextPath()%>/static/script.js"></script>
     </head>
     <body>
         <%@include file="navbar.jsp" %>
@@ -39,10 +38,18 @@
             <div class="container" style="margin-left:25%;padding:1px 16px;height:1000px;">
 
                 <h2>Liste des vos Parcours</h2>
+                <% if ((parcours == null) || (parcours.isEmpty())) {%>
+                <br/>
+                <br/>
+                <h2>Vous n'avez aucun Parcours pour l'instant</h2>
+                <p>
+                    Vous pouvez commencer en cliquant <a href="<%= request.getContextPath()%>/stagiaire/creer_parcours.jsp">ici</a>
+                </p>
+                <% } else { %>
                 <table>
                     <tr>
                         <th>Score</th>
-                        <th>Durée</th>
+                        <th>Durée (secondes)</th>
                         <th>Reponses</th>
                         <th></th>
                     </tr>
@@ -51,7 +58,7 @@
                         <td><%=parcours.get(i).getScore()%></td>
                         <td><%=parcours.get(i).getDuree()%></td>
 
-                        <% if (parcours.get(i).getReponses() == null) {%>
+                        <% if ((parcours.get(i).getReponses() == null) || parcours.get(i).getReponses().isEmpty()) {%>
                         <td><a href="<%= request.getContextPath()%>/stagiaire/parcours_reponses.jsp?id=<%=parcours.get(i).getId()%>">Démarrer le parcours</a></td>
                         <% } else {%>
                         <td><a href="<%= request.getContextPath()%>/stagiaire/parcours_reponses?id=<%=parcours.get(i).getId()%>">Voir les réponses</a></td>
@@ -59,13 +66,6 @@
                     </tr>
                     <% }%>
                 </table>
-                <br/>
-                <br/>
-                <% if (parcours.size() == 0) {%>
-                <h2>Vous n'avez aucun Parcours pour l'instant</h2>
-                <p>
-                    Vous pouvez commencer en cliquant <a href="<%= request.getContextPath()%>/stagiaire/creer_parcours.jsp">ici</a>
-                </p>
                 <% }%>
             </div>
         </div>

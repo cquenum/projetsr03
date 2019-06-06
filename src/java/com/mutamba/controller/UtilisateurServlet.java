@@ -43,7 +43,7 @@ public class UtilisateurServlet extends HttpServlet {
         
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
-        String email = request.getParameter("email");
+        String email = request.getParameter("email").trim().toLowerCase();
         String pwd = request.getParameter("pwd");
         String telephone = request.getParameter("telephone");
         String role = request.getParameter("role");

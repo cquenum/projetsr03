@@ -183,7 +183,7 @@ public class UtilisateurDao extends Dao<Utilisateur> {
                             ResultSet.CONCUR_UPDATABLE)
                     .executeQuery(
                             "SELECT id FROM utilisateur WHERE "
-                                    + "email='" + email.trim() + "' " 
+                                    + "email='" + email.trim().toLowerCase() + "' " 
                                     + "AND pwd='" + pwd + "'"
                     );
 

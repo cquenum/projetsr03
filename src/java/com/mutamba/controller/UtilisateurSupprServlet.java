@@ -8,7 +8,6 @@ package com.mutamba.controller;
 import com.mutamba.dao.UtilisateurDao;
 import com.mutamba.model.Utilisateur;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

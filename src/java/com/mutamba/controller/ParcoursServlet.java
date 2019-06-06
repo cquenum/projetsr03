@@ -5,6 +5,9 @@
  */
 package com.mutamba.controller;
 
+import com.mutamba.dao.ParcoursDao;
+import com.mutamba.dao.ReponseDao;
+import com.mutamba.model.Parcours;
 import com.mutamba.model.Utilisateur;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -39,7 +42,23 @@ public class ParcoursServlet extends HttpServlet {
             
             if (utilisateur != null){
                 // TODO:
+                String id_parcours = request.getParameter("id_parcours");
+                String id_reponse = request.getParameter("id_reponse");
+                String duree = request.getParameter("duree");
+                
+                Parcours parcours = new ParcoursDao().find(Integer.parseInt(id_parcours));
+                parcours.updateDuree(Integer.parseInt(duree));
+                parcours = new ParcoursDao().update(parcours);
+                
+                parcours.addReponse(new ReponseDao().find(Integer.parseInt(id_reponse)));
+                parcours = new ParcoursDao().saveReponse(parcours);
+                
+                response.sendRedirect(request.getContextPath() + "/stagiaire/parcours_reponses.jsp?id=" + parcours.getId() );
+
             }
+            else
+                response.sendRedirect(request.getContextPath() + "/stagiaire/index.jsp");
+            
         }
         
     }
