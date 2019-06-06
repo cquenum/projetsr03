@@ -45,4 +45,14 @@ public class Competence {
                 "}";
     }
     
+    @Override
+    public boolean equals(Object obj){
+                
+        if ((obj != null) && (obj.getClass() == Competence.class)){
+            if (((Competence) obj).getId() == this.id )
+                return true;
+        }
+        return false;
+    }
+    
 }

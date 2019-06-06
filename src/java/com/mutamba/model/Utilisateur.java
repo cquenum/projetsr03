@@ -75,6 +75,10 @@ public class Utilisateur {
         return this.statut;
     }
     
+    public boolean isActive() {
+        return this.statut;
+    }
+    
     public LocalDateTime getDateCreation(){
         return this.dateCreation;
     }
@@ -117,5 +121,15 @@ public class Utilisateur {
                 + "dateCreation:\"" + this.dateCreation.format(formatter) + "\","
                 + "role:\"" + this.role + "\","
                 + "}";
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+                
+        if ((obj != null) && (obj.getClass() == Utilisateur.class)){
+            if (((Utilisateur) obj).getId() == this.id )
+                return true;
+        }
+        return false;
     }
 }

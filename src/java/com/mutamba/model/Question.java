@@ -47,6 +47,10 @@ public class Question {
         return this.statut;
     }
     
+    public boolean isActive() {
+        return this.statut;
+    }
+    
     public void setQuestionnaire(Questionnaire questionnaire){
         this.questionnaire = questionnaire;
     }
@@ -61,5 +65,15 @@ public class Question {
                 ", valeur: '" + this.valeur + "'" +
                 ", questionnaire: " + this.questionnaire.toString() +
                 "}";
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+                
+        if ((obj != null) && (obj.getClass() == Question.class)){
+            if (((Question) obj).getId() == this.id )
+                return true;
+        }
+        return false;
     }
 }

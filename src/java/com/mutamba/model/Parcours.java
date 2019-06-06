@@ -107,4 +107,13 @@ public class Parcours {
                 "}";
     }
     
+    @Override
+    public boolean equals(Object obj){
+                
+        if ((obj != null) && (obj.getClass() == Parcours.class)){
+            if (((Parcours) obj).getId() == this.id )
+                return true;
+        }
+        return false;
+    }
 }

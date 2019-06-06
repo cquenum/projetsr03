@@ -47,6 +47,10 @@ public class Questionnaire {
         return this.statut;
     }
     
+    public boolean isActive() {
+        return this.statut;
+    }
+    
     public Competence getCompetence(){
         return this.competence;
     }
@@ -62,5 +66,15 @@ public class Questionnaire {
                 ", statut: '" + this.statut + "'" +
                 ", competence: " + this.competence.toString() +
                 "}";
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+                
+        if ((obj != null) && (obj.getClass() == Questionnaire.class)){
+            if (((Questionnaire) obj).getId() == this.id )
+                return true;
+        }
+        return false;
     }
 }

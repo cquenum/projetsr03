@@ -52,6 +52,10 @@ public class Reponse {
     public boolean isBonne() {
         return this.bonne;
     }
+    
+    public boolean isActive() {
+        return this.statut;
+    }
 
     public void setBonne(boolean bonne) {
         this.bonne = bonne;
@@ -73,5 +77,15 @@ public class Reponse {
                 + ", bonne: " + this.bonne
                 + ", question: " + this.question.toString()
                 + "}";
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+                
+        if ((obj != null) && (obj.getClass() == Reponse.class)){
+            if (((Reponse) obj).getId() == this.id )
+                return true;
+        }
+        return false;
     }
 }

@@ -4,6 +4,8 @@
     Author     : cquenum
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="com.mutamba.model.Utilisateur"%>
 <%@page import="com.mutamba.dao.ParcoursDao"%>
 <%@page import="com.mutamba.dao.ReponseDao"%>
@@ -49,22 +51,35 @@
                 <table>
                     <tr>
                         <th>Score</th>
-                        <th>Durée (secondes)</th>
-                        <th>Reponses</th>
+                        <th>Durée</th>
+                        <th></th>
                         <th></th>
                     </tr>
                     <% for (int i = 0; i < parcours.size(); i++) {%>
                     <tr>
                         <td><%=parcours.get(i).getScore()%></td>
-                        <td><%=parcours.get(i).getDuree()%></td>
+                        <% Date date = new Date((long) (parcours.get(i).getDuree() * 1000));
+                            String duree = new SimpleDateFormat("hh:mm:ss").format(date);%>
+                        <td><%=duree%></td>
 
                         <% if ((parcours.get(i).getReponses() == null) || parcours.get(i).getReponses().isEmpty()) {%>
-                        <td><a href="<%= request.getContextPath()%>/stagiaire/parcours_reponses.jsp?id=<%=parcours.get(i).getId()%>">Démarrer le parcours</a></td>
+                        <td><a href="<%= request.getContextPath()%>/stagiaire/do_parcours.jsp?id=<%=parcours.get(i).getId()%>">Démarrer le parcours</a></td>
                         <% } else {%>
-                        <td><a href="<%= request.getContextPath()%>/stagiaire/parcours_reponses?id=<%=parcours.get(i).getId()%>">Voir les réponses</a></td>
+                        <%
+                            // Vérifier si le parcours est terminé (le stagiaire a repondu à toutes les questions)
+
+                            int nbReponses = parcours.get(i).getReponses().size();
+                            int nbQuestions = new QuestionDao().find(parcours.get(i).getQuestionnaire()).size();
+
+                            if (nbReponses < nbQuestions) {
+                        %>
+                        <td><a href="<%= request.getContextPath()%>/stagiaire/do_parcours.jsp?id=<%=parcours.get(i).getId()%>">Continuer le parcours</a></td>
+                        <% } else {%>
+                        <td><a href="<%= request.getContextPath()%>/stagiaire/reponses.jsp?id=<%=parcours.get(i).getId()%>">Voir les réponses</a></td>
                         <% } %>
                     </tr>
-                    <% }%>
+                    <% }
+                        }%>
                 </table>
                 <% }%>
             </div>

@@ -28,9 +28,12 @@
                     <label for="questionnaire"><b>Questionnaires: </b>
                         <select name="questionnaire">
                             <% Hashtable<Integer, Questionnaire> questionnaires = new QuestionnaireDao().find();
-                                for (int i = 0; i < questionnaires.size(); i++) {%>
+                                for (int i = 0; i < questionnaires.size(); i++) {
+                                    if (questionnaires.get(i).isActive()){
+                            %>
                             <option value="<%= questionnaires.get(i).getId()%>"><%= questionnaires.get(i).getValeur()%></option>
                             <%
+                                    }
                                 }%>
                         </select>
                     </label>

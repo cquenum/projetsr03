@@ -41,7 +41,6 @@ public class ParcoursServlet extends HttpServlet {
             Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
             
             if (utilisateur != null){
-                // TODO:
                 String id_parcours = request.getParameter("id_parcours");
                 String id_reponse = request.getParameter("id_reponse");
                 String duree = request.getParameter("duree");
@@ -53,7 +52,8 @@ public class ParcoursServlet extends HttpServlet {
                 parcours.addReponse(new ReponseDao().find(Integer.parseInt(id_reponse)));
                 parcours = new ParcoursDao().saveReponse(parcours);
                 
-                response.sendRedirect(request.getContextPath() + "/stagiaire/parcours_reponses.jsp?id=" + parcours.getId() );
+                // TODO: 
+                response.sendRedirect(request.getContextPath() + "/stagiaire/do_parcours.jsp?id=" + parcours.getId() );
 
             }
             else
