@@ -4,6 +4,7 @@
     Author     : cquenum
 --%>
 
+<%@page import="java.util.concurrent.TimeUnit"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.mutamba.model.Utilisateur"%>
@@ -65,15 +66,24 @@
                 <p>
                     Vous pouvez commencer en cliquant <a href="<%= request.getContextPath()%>/stagiaire/do_parcours.jsp?id=<%=parcours.getId()%>">ici</a>
                 </p>
-                <% } else { %>
+                <% } else {%>
+                <p>
+                    <b>Score:</b> <%=parcours.getScore()%>/<%=parcours.getReponses().size()%><br/>
+                <% Date date = new Date(TimeUnit.SECONDS.toMillis(parcours.getDuree()));
+                    String duree = new SimpleDateFormat("mm:ss").format(date);
+                %>
+                <b>Durée du parcours:</b> <%=duree%><br/>
+                </p>
                 <table>
                     <tr>
+                        <th>No.</th>
                         <th>Questions</th>
                         <th>Votre réponses</th>
                         <th>Réponse correcte ?</th>
                     </tr>
                     <% for (int i = 0; i < reponses.size(); i++) {%>
                     <tr>
+                        <td><%=i + 1%></td>
                         <td><%=reponses.get(i).getQuestion().getValeur()%></td>
                         <td><%=reponses.get(i).getValeur()%></td>
                         <%if (reponses.get(i).isBonne()) {%>

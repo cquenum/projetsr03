@@ -32,8 +32,8 @@
                 <div class="container">
                     <% Hashtable<Integer, Competence> competences = new CompetenceDao().find();
                                 for (int i = 0; i < competences.size(); i++) {%>
-                    <input type="radio" name="reponse" value="<%= competences.get(i).getId()%>" style="margin-bottom:15px" required> <%= competences.get(i).getSujet()%>
-                    
+                    <input type="radio" name="competences" value="<%= competences.get(i).getId()%>" style="margin-bottom:15px" required> <%= competences.get(i).getSujet()%>
+                    <% } %>
                     <br/>
                     <br/>
                     <label for="questionnaire"><b>Questionnaire</b>

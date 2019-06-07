@@ -4,6 +4,7 @@
     Author     : cquenum
 --%>
 
+<%@page import="java.util.concurrent.TimeUnit"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.mutamba.model.Utilisateur"%>
@@ -58,8 +59,8 @@
                     <% for (int i = 0; i < parcours.size(); i++) {%>
                     <tr>
                         <td><%=parcours.get(i).getScore()%></td>
-                        <% Date date = new Date((long) (parcours.get(i).getDuree() * 1000));
-                            String duree = new SimpleDateFormat("hh:mm:ss").format(date);%>
+                        <% Date date = new Date(TimeUnit.SECONDS.toMillis(parcours.get(i).getDuree()));
+                            String duree = new SimpleDateFormat("mm:ss").format(date);%>
                         <td><%=duree%></td>
 
                         <% if ((parcours.get(i).getReponses() == null) || parcours.get(i).getReponses().isEmpty()) {%>

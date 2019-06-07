@@ -40,7 +40,7 @@
 
     Hashtable<Integer, Reponse> reponsesPrecedantes = parcours.getReponses();
     Hashtable<Integer, Question> questions = new QuestionDao().find(parcours.getQuestionnaire());
-    Question nouvelleQuestion = new Question();
+    Question nouvelleQuestion = null;
     
     for (int j = 0; j < questions.size(); j++) {
         boolean questionDejaPose = false;
@@ -68,7 +68,7 @@
         <title>Evaluation</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/static/style.css"/>
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/style.css"/>
         <script language="JavaScript">
             var totalSeconds = 0;
             setInterval(setTime, 1000);
@@ -98,7 +98,7 @@
             <br/>
             <h2>Vous avez terminé le Parcours</h2>
             <p>
-                Vous pouvez consultre en cliquant <a href="<%= request.getContextPath()%>/stagiaire/reponses.jsp?id=<%=parcours.getId()%>">ici</a>
+                Vous pouvez consulter vos réponses en cliquant <a href="<%= request.getContextPath()%>/stagiaire/reponses.jsp?id=<%=parcours.getId()%>">ici</a>
             </p>
             <% } else {%>
             <h1>Choisissez une réponse:</h1>
@@ -106,7 +106,7 @@
                 <div>
                     <input type="hidden" name="id_parcours" value="<%= parcours.getId()%>">
                     <input type="hidden" name="duree" id="duree">
-                    <strong>Durée: </strong> <label id="minutes">00</label>:<label id="seconds">00</label>
+                    <strong>Temps: </strong> <label id="minutes">00</label>:<label id="seconds">00</label>
 
                     <h2><%= nouvelleQuestion.getValeur()%>:</h2>
                     <% Hashtable<Integer, Reponse> reponses = new ReponseDao().find(nouvelleQuestion);
