@@ -46,7 +46,7 @@ public class ParcoursServlet extends HttpServlet {
                 String duree = request.getParameter("duree");
                 
                 Parcours parcours = new ParcoursDao().find(Integer.parseInt(id_parcours));
-                parcours.updateDuree(Integer.parseInt(duree));
+                parcours.setDuree(Integer.parseInt(duree));
                 parcours = new ParcoursDao().update(parcours);
                 
                 parcours.addReponse(new ReponseDao().find(Integer.parseInt(id_reponse)));

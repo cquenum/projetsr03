@@ -35,7 +35,9 @@ public class CompetenceModifServlet extends HttpServlet {
         int id;
 
         if (sid.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/admin/error.html");
+            String errorMessage = "La requête est invalide";
+            request.setAttribute("errorMessage", errorMessage);
+            response.sendRedirect(request.getContextPath() + "/admin/error.jsp");
         } else {
             try {
                 id = Integer.parseInt(sid);
@@ -49,7 +51,9 @@ public class CompetenceModifServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/admin/succes.html");
 
             } catch (Exception e) {
-                response.sendRedirect(request.getContextPath() + "/admin/error.html");
+                String errorMessage = "La Competence avec l'ID:" + sid + "n'existe pas";
+                request.setAttribute("errorMessage", errorMessage);
+                response.sendRedirect(request.getContextPath() + "/admin/error.jsp");
             }
 
         }

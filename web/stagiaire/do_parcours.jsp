@@ -36,6 +36,15 @@
 
     } catch (Exception e) {
         e.printStackTrace();
+        String errorMessage = "Le parcours avec l'ID:" + idParcours + " n'existe pas";
+        request.setAttribute("errorMessage", errorMessage);
+        response.sendRedirect(request.getContextPath() + "/stagiaire/error.jsp");
+    }
+    
+    if (!utilisateur.equals(parcours.getStagiaire())){
+        String errorMessage = "Le parcours avec l'ID:" + idParcours + " n'est pas associé à votre compte";
+        request.setAttribute("errorMessage", errorMessage);
+        response.sendRedirect(request.getContextPath() + "/stagiaire/error.jsp");
     }
 
     Hashtable<Integer, Reponse> reponsesPrecedantes = parcours.getReponses();
@@ -70,7 +79,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/style.css"/>
         <script language="JavaScript">
-            var totalSeconds = 0;
+            var totalSeconds = <%= parcours.getDuree()%>;
             setInterval(setTime, 1000);
 
             function setTime() {
